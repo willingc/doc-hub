@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Summary of changes in JupyterHub &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="index.html"/>
+        <link rel="prev" title="Users" href="api/user.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Summary of changes in JupyterHub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">0.6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">0.6.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">0.6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">0.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">0.4.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">0.4.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">0.1</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Summary of changes in JupyterHub</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/changelog.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="summary-of-changes-in-jupyterhub">
+<span id="summary-of-changes-in-jupyterhub"></span><h1>Summary of changes in JupyterHub<a class="headerlink" href="#summary-of-changes-in-jupyterhub" title="Permalink to this headline">¶</a></h1>
+<p>See <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> for a more detailed summary.</p>
+<div class="section" id="">
+<span id="id1"></span><h2>0.6<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="">
+<span id="id2"></span><h3>0.6.1<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+<p>Bugfixes on 0.6:</p>
+<ul class="simple">
+<li>statsd is an optional dependency, only needed if in use</li>
+<li>Notice more quickly when servers have crashed</li>
+<li>Better error pages for proxy errors</li>
+<li>Add Stop All button to admin panel for stopping all servers at once</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h3>0.6.0<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>JupyterHub has moved to a new <code class="docutils literal"><span class="pre">jupyterhub</span></code> namespace on GitHub and Docker. What was <code class="docutils literal"><span class="pre">juptyer/jupyterhub</span></code> is now <code class="docutils literal"><span class="pre">jupyterhub/jupyterhub</span></code>, etc.</li>
+<li><code class="docutils literal"><span class="pre">jupyterhub/jupyterhub</span></code> image on DockerHub no longer loads the jupyterhub_config.py in an ONBUILD step. A new <code class="docutils literal"><span class="pre">jupyterhub/jupyterhub-onbuild</span></code> image does this</li>
+<li>Add statsd support, via <code class="docutils literal"><span class="pre">c.JupyterHub.statsd_{host,port,prefix}</span></code></li>
+<li>Update to traitlets 4.1 <code class="docutils literal"><span class="pre">&#64;default</span></code>, <code class="docutils literal"><span class="pre">&#64;observe</span></code> APIs for traits</li>
+<li>Allow disabling PAM sessions via <code class="docutils literal"><span class="pre">c.PAMAuthenticator.open_sessions</span> <span class="pre">=</span> <span class="pre">False</span></code>. This may be needed on SELinux-enabled systems, where our PAM session logic often does not work properly</li>
+<li>Add <code class="docutils literal"><span class="pre">Spawner.environment</span></code> configurable, for defining extra environment variables to load for single-user servers</li>
+<li>JupyterHub API tokens can be pregenerated and loaded via <code class="docutils literal"><span class="pre">JupyterHub.api_tokens</span></code>, a dict of <code class="docutils literal"><span class="pre">token:</span> <span class="pre">username</span></code>.</li>
+<li>JupyterHub API tokens can be requested via the REST API, with a POST request to <code class="docutils literal"><span class="pre">/api/authorizations/token</span></code>.
+This can only be used if the Authenticator has a username and password.</li>
+<li>Various fixes for user URLs and redirects</li>
+</ul>
+</div>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h2>0.5<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Single-user server must be run with Jupyter Notebook ≥ 4.0</li>
+<li>Require <code class="docutils literal"><span class="pre">--no-ssl</span></code> confirmation to allow the Hub to be run without SSL (e.g. behind SSL termination in nginx)</li>
+<li>Add lengths to text fields for MySQL support</li>
+<li>Add <code class="docutils literal"><span class="pre">Spawner.disable_user_config</span></code> for preventing user-owned configuration from modifying single-user servers.</li>
+<li>Fixes for MySQL support.</li>
+<li>Add ability to run each user&#8217;s server on its own subdomain. Requires wildcard DNS and wildcard SSL to be feasible. Enable subdomains by setting <code class="docutils literal"><span class="pre">JupyterHub.subdomain_host</span> <span class="pre">=</span> <span class="pre">'https://jupyterhub.domain.tld[:port]'</span></code>.</li>
+<li>Use <code class="docutils literal"><span class="pre">127.0.0.1</span></code> for local communication instead of <code class="docutils literal"><span class="pre">localhost</span></code>, avoiding issues with DNS on some systems.</li>
+<li>Fix race that could add users to proxy prematurely if spawning is slow.</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2>0.4<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="">
+<span id="id6"></span><h3>0.4.1<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+<p>Fix removal of <code class="docutils literal"><span class="pre">/login</span></code> page in 0.4.0, breaking some OAuth providers.</p>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h3>0.4.0<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">Spawner.user_options_form</span></code> for specifying an HTML form to present to users,
+allowing users to influence the spawning of their own servers.</li>
+<li>Add <code class="docutils literal"><span class="pre">Authenticator.pre_spawn_start</span></code> and <code class="docutils literal"><span class="pre">Authenticator.post_spawn_stop</span></code> hooks,
+so that Authenticators can do setup or teardown (e.g. passing credentials to Spawner,
+mounting data sources, etc.).
+These methods are typically used with custom Authenticator+Spawner pairs.</li>
+<li>0.4 will be the last JupyterHub release where single-user servers running IPython 3 is supported instead of Notebook ≥ 4.0.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h2>0.3<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>No longer make the user starting the Hub an admin</li>
+<li>start PAM sessions on login</li>
+<li>hooks for Authenticators to fire before spawners start and after they stop,
+allowing deeper interaction between Spawner/Authenticator pairs.</li>
+<li>login redirect fixes</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id9"></span><h2>0.2<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Based on standalone traitlets instead of IPython.utils.traitlets</li>
+<li>multiple users in admin panel</li>
+<li>Fixes for usernames that require escaping</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id10"></span><h2>0.1<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<p>First preview release</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="api/user.html" class="btn btn-neutral" title="Users" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

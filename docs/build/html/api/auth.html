@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authenticators &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="The JupyterHub API" href="index.html"/>
+        <link rel="next" title="Spawners" href="spawner.html"/>
+        <link rel="prev" title="The JupyterHub API" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The JupyterHub API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Authenticators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-jupyterhub.auth">Module: <code class="docutils literal"><span class="pre">jupyterhub.auth</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spawner.html">Spawners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">Users</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">The JupyterHub API</a> &raquo;</li>
+      
+    <li>Authenticators</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/auth.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="authenticators">
+<h1>Authenticators<a class="headerlink" href="#authenticators" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-jupyterhub.auth">
+<span id="module-jupyterhub-auth"></span><h2>Module: <a class="reference internal" href="#module-jupyterhub.auth" title="jupyterhub.auth"><code class="xref py py-mod docutils literal"><span class="pre">jupyterhub.auth</span></code></a><a class="headerlink" href="#module-jupyterhub.auth" title="Permalink to this headline">¶</a></h2>
+<p>Base Authenticator class and the default PAM Authenticator</p>
+<dl class="class">
+<dt id="jupyterhub.auth.Authenticator">
+<em class="property">class </em><code class="descclassname">jupyterhub.auth.</code><code class="descname">Authenticator</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for authentication.</p>
+<p>The primary API is one method, <cite>authenticate</cite>, a tornado coroutine
+for authenticating users.</p>
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.add_user">
+<code class="descname">add_user</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.add_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new user</p>
+<p>By default, this just adds the user to the whitelist.</p>
+<p>Subclasses may do more extensive things,
+such as adding actual unix users,
+but they should call super to ensure the whitelist is updated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<a class="reference internal" href="user.html#jupyterhub.user.User" title="jupyterhub.user.User"><em>User</em></a>) &#8211; The User wrapper object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.authenticate">
+<code class="descname">authenticate</code><span class="sig-paren">(</span><em>handler</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a user with login form data.</p>
+<p>This must be a tornado gen.coroutine.
+It must return the username on successful authentication,
+and return None on failed authentication.</p>
+<p>Checking the whitelist is handled separately by the caller.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>handler</strong> (<em>tornado.web.RequestHandler</em>) &#8211; the current request handler</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; The formdata of the login form.
+The default form has &#8216;username&#8217; and &#8216;password&#8217; fields.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the username of the authenticated user
+None: Authentication failed</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.check_whitelist">
+<code class="descname">check_whitelist</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.check_whitelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check a username against our whitelist.</p>
+<p>Return True if username is allowed, False otherwise.
+No whitelist means any username should be allowed.</p>
+<p>Names are normalized <em>before</em> being checked against the whitelist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.delete_user">
+<code class="descname">delete_user</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.delete_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when a user is deleted.</p>
+<p>Removes the user from the whitelist.
+Subclasses should call super to ensure the whitelist is updated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<a class="reference internal" href="user.html#jupyterhub.user.User" title="jupyterhub.user.User"><em>User</em></a>) &#8211; The User wrapper object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.get_authenticated_user">
+<code class="descname">get_authenticated_user</code><span class="sig-paren">(</span><em>handler</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.get_authenticated_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the outer API for authenticating a user.</p>
+<p>This calls <cite>authenticate</cite>, which should be overridden in subclasses,
+normalizes the username if any normalization should be done,
+and then validates the name in the whitelist.</p>
+<p>Subclasses should not need to override this method.
+The various stages can be overridden separately:</p>
+<ul class="simple">
+<li>authenticate turns formdata into a username</li>
+<li>normalize_username normalizes the username</li>
+<li>check_whitelist checks against the user whitelist</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.get_handlers">
+<code class="descname">get_handlers</code><span class="sig-paren">(</span><em>app</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.get_handlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return any custom handlers the authenticator needs to register</p>
+<p>(e.g. for OAuth).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app</strong> (<em>JupyterHub Application</em>) &#8211; the application object, in case it needs to be accessed for info.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>list of <code class="docutils literal"><span class="pre">('/url',</span> <span class="pre">Handler)</span></code> tuples passed to tornado.</dt>
+<dd>The Hub prefix is added to any URLs.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#list" title="(in Python v2.7)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.login_url">
+<code class="descname">login_url</code><span class="sig-paren">(</span><em>base_url</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.login_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to register a custom login handler</p>
+<p>Generally used in combination with get_handlers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>base_url</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; the base URL of the Hub (e.g. /hub/)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The login URL, e.g. &#8216;/hub/login&#8217;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.logout_url">
+<code class="descname">logout_url</code><span class="sig-paren">(</span><em>base_url</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.logout_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to register a custom logout handler.</p>
+<p>Generally used in combination with get_handlers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>base_url</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; the base URL of the Hub (e.g. /hub/)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The logout URL, e.g. &#8216;/hub/logout&#8217;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.normalize_username">
+<code class="descname">normalize_username</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.normalize_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize a username.</p>
+<p>Override in subclasses if usernames should have some normalization.
+Default: cast to lowercase, lookup in username_map.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.post_spawn_stop">
+<code class="descname">post_spawn_stop</code><span class="sig-paren">(</span><em>user</em>, <em>spawner</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.post_spawn_stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook called after stopping a user container.</p>
+<p>Can be used to do auth-related cleanup, e.g. closing PAM sessions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.pre_spawn_start">
+<code class="descname">pre_spawn_start</code><span class="sig-paren">(</span><em>user</em>, <em>spawner</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.pre_spawn_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook called before spawning a user&#8217;s server.</p>
+<p>Can be used to do auth-related startup, e.g. opening PAM sessions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.Authenticator.validate_username">
+<code class="descname">validate_username</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.Authenticator.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a (normalized) username.</p>
+<p>Return True if username is valid, False otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jupyterhub.auth.LocalAuthenticator">
+<em class="property">class </em><code class="descclassname">jupyterhub.auth.</code><code class="descname">LocalAuthenticator</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.LocalAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for Authenticators that work with local Linux/UNIX users</p>
+<p>Checks for local users, and can attempt to create them if they exist.</p>
+<dl class="method">
+<dt id="jupyterhub.auth.LocalAuthenticator.add_system_user">
+<code class="descname">add_system_user</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.LocalAuthenticator.add_system_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Linux/UNIX user on the system. Works on FreeBSD and Linux, at least.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.auth.LocalAuthenticator.add_user">
+<code class="descname">add_user</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.LocalAuthenticator.add_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new user</p>
+<p>If self.create_system_users, the user will attempt to be created.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="jupyterhub.auth.LocalAuthenticator.system_user_exists">
+<em class="property">static </em><code class="descname">system_user_exists</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.LocalAuthenticator.system_user_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the user exists on the system</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jupyterhub.auth.PAMAuthenticator">
+<em class="property">class </em><code class="descclassname">jupyterhub.auth.</code><code class="descname">PAMAuthenticator</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.auth.PAMAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate local Linux/UNIX users with PAM</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spawner.html" class="btn btn-neutral float-right" title="Spawners" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="The JupyterHub API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

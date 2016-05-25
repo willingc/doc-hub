@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started with JupyterHub &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="index.html"/>
+        <link rel="next" title="How JupyterHub works" href="howitworks.html"/>
+        <link rel="prev" title="JupyterHub" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with JupyterHub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyterhub-s-default-behavior">JupyterHub&#8217;s default behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-configure-jupyterhub">How to configure JupyterHub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-file">Configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-line-arguments">Command-line arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#networking">Networking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-proxy-s-ip-address-and-port">Configuring the Proxy&#8217;s IP address and port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-proxy-s-rest-api-communication-ip-address-and-port-optional">Configuring the Proxy&#8217;s REST API communication IP address and port (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-hub-if-spawners-or-proxy-are-remote-or-isolated-in-containers">Configuring the Hub if Spawners or Proxy are remote or isolated in containers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssl-encryption">SSL encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cookie-secret">Cookie secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proxy-authentication-token">Proxy authentication token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-authentication">Configuring authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-and-removing-users">Adding and removing users</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-single-user-servers">Configuring single-user servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-services">External services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-locations">File locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting started with JupyterHub</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/getting-started.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-jupyterhub">
+<span id="getting-started-with-jupyterhub"></span><h1>Getting started with JupyterHub<a class="headerlink" href="#getting-started-with-jupyterhub" title="Permalink to this headline">¶</a></h1>
+<p>This document describes some of the basics of configuring JupyterHub to do what you want.
+JupyterHub is highly customizable, so there&#8217;s a lot to cover.</p>
+<div class="section" id="installation">
+<span id="installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="https://github.com/jupyter/jupyterhub/blob/master/README.md">the readme</a> for help installing JupyterHub.</p>
+</div>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>JupyterHub is a set of processes that together provide a multiuser Jupyter Notebook server.
+There are three main categories of processes run by the <code class="docutils literal"><span class="pre">jupyterhub</span></code> command line program:</p>
+<ul class="simple">
+<li><strong>Single User Server</strong>: a dedicated, single-user, Jupyter Notebook is started for each user on the system
+when they log in. The object that starts these processes is called a Spawner.</li>
+<li><strong>Proxy</strong>: the public facing part of the server that uses a dynamic proxy to route HTTP requests
+to the Hub and Single User Servers.</li>
+<li><strong>Hub</strong>: manages user accounts and authentication and coordinates Single Users Servers using a Spawner.</li>
+</ul>
+</div>
+<div class="section" id="jupyterhub-s-default-behavior">
+<span id="jupyterhub-s-default-behavior"></span><h2>JupyterHub&#8217;s default behavior<a class="headerlink" href="#jupyterhub-s-default-behavior" title="Permalink to this headline">¶</a></h2>
+<p><strong>IMPORTANT:</strong> In its default configuration, JupyterHub requires SSL encryption (HTTPS) to run.
+<strong>You should not run JupyterHub without SSL encryption on a public network.</strong>
+See <a class="reference external" href="#Security">Security documentation</a> for how to configure JupyterHub to use SSL, and in
+certain cases, e.g. behind SSL termination in nginx, allowing the hub to run with no SSL
+by requiring <code class="docutils literal"><span class="pre">--no-ssl</span></code> (as of <a class="reference external" href="./changelog.html">version 0.5</a>).</p>
+<p>To start JupyterHub in its default configuration, type the following at the command line:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">jupyterhub</span>
+</pre></div>
+</div>
+<p>The default Authenticator that ships with JupyterHub authenticates users
+with their system name and password (via <a class="reference external" href="https://en.wikipedia.org/wiki/Pluggable_authentication_module">PAM</a>).
+Any user on the system with a password will be allowed to start a single-user notebook server.</p>
+<p>The default Spawner starts servers locally as each user, one dedicated server per user.
+These servers listen on localhost, and start in the given user&#8217;s home directory.</p>
+<p>By default, the <strong>Proxy</strong> listens on all public interfaces on port 8000.
+Thus you can reach JupyterHub through either:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8000</span>
+</pre></div>
+</div>
+<p>or any other public IP or domain pointing to your system.</p>
+<p>In their default configuration, the other services, the <strong>Hub</strong> and <strong>Single-User Servers</strong>,
+all communicate with each other on localhost only.</p>
+<p>By default, starting JupyterHub will write two files to disk in the current working directory:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">jupyterhub.sqlite</span></code> is the sqlite database containing all of the state of the <strong>Hub</strong>.
+This file allows the <strong>Hub</strong> to remember what users are running and where,
+as well as other information enabling you to restart parts of JupyterHub separately.</li>
+<li><code class="docutils literal"><span class="pre">jupyterhub_cookie_secret</span></code> is the encryption key used for securing cookies.
+This file needs to persist in order for restarting the Hub server to avoid invalidating cookies.
+Conversely, deleting this file and restarting the server effectively invalidates all login cookies.
+The cookie secret file is discussed in the [Cookie Secret documentation](#Cookie secret).</li>
+</ul>
+<p>The location of these files can be specified via configuration, discussed below.</p>
+</div>
+<div class="section" id="how-to-configure-jupyterhub">
+<span id="how-to-configure-jupyterhub"></span><h2>How to configure JupyterHub<a class="headerlink" href="#how-to-configure-jupyterhub" title="Permalink to this headline">¶</a></h2>
+<p>JupyterHub is configured in two ways:</p>
+<ol class="simple">
+<li>Configuration file</li>
+<li>Command-line arguments</li>
+</ol>
+<div class="section" id="configuration-file">
+<span id="configuration-file"></span><h3>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>By default, JupyterHub will look for a configuration file (which may not be created yet)
+named <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code> in the current working directory.
+You can create an empty configuration file with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyterhub</span> <span class="o">--</span><span class="n">generate</span><span class="o">-</span><span class="n">config</span>
+</pre></div>
+</div>
+<p>This empty configuration file has descriptions of all configuration variables and their default
+values. You can load a specific config file with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyterhub</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">jupyterhub_config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>See also: <a class="reference external" href="http://ipython.org/ipython-doc/dev/development/config.html">general docs</a>
+on the config system Jupyter uses.</p>
+</div>
+<div class="section" id="command-line-arguments">
+<span id="command-line-arguments"></span><h3>Command-line arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h3>
+<p>Type the following for brief information about the command-line arguments:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyterhub</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyterhub</span> <span class="o">--</span><span class="n">help</span><span class="o">-</span><span class="nb">all</span>
+</pre></div>
+</div>
+<p>for the full command line help.</p>
+<p>All configurable options are technically configurable on the command-line,
+even if some are really inconvenient to type. Just replace the desired option,
+c.Class.trait, with &#8211;Class.trait. For example, to configure
+c.Spawner.notebook_dir = &#8216;~/assignments&#8217; from the command-line:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyterhub</span> <span class="o">--</span><span class="n">Spawner</span><span class="o">.</span><span class="n">notebook_dir</span><span class="o">=</span><span class="s1">&#39;~/assignments&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="networking">
+<span id="networking"></span><h2>Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configuring-the-proxy-s-ip-address-and-port">
+<span id="configuring-the-proxy-s-ip-address-and-port"></span><h3>Configuring the Proxy&#8217;s IP address and port<a class="headerlink" href="#configuring-the-proxy-s-ip-address-and-port" title="Permalink to this headline">¶</a></h3>
+<p>The Proxy&#8217;s main IP address setting determines where JupyterHub is available to users.
+By default, JupyterHub is configured to be available on all network interfaces
+(<code class="docutils literal"><span class="pre">''</span></code>) on port 8000. <strong>Note</strong>: Use of <code class="docutils literal"><span class="pre">'*'</span></code> is discouraged for IP configuration;
+instead, use of <code class="docutils literal"><span class="pre">'0.0.0.0'</span></code> is preferred.</p>
+<p>Changing the IP address and port can be done with the following command line
+arguments:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyterhub</span> <span class="o">--</span><span class="n">ip</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.2</span> <span class="o">--</span><span class="n">port</span><span class="o">=</span><span class="mi">443</span>
+</pre></div>
+</div>
+<p>Or by placing the following lines in a configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;192.168.1.2&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">443</span>
+</pre></div>
+</div>
+<p>Port 443 is used as an example since 443 is the default port for SSL/HTTPS.</p>
+<p>Configuring only the main IP and port of JupyterHub should be sufficient for most deployments of JupyterHub.
+However, more customized scenarios may need additional networking details to
+be configured.</p>
+</div>
+<div class="section" id="configuring-the-proxy-s-rest-api-communication-ip-address-and-port-optional">
+<span id="configuring-the-proxy-s-rest-api-communication-ip-address-and-port-optional"></span><h3>Configuring the Proxy&#8217;s REST API communication IP address and port (optional)<a class="headerlink" href="#configuring-the-proxy-s-rest-api-communication-ip-address-and-port-optional" title="Permalink to this headline">¶</a></h3>
+<p>The Hub service talks to the proxy via a REST API on a secondary port,
+whose network interface and port can be configured separately.
+By default, this REST API listens on port 8081 of localhost only.</p>
+<p>If running the Proxy separate from the Hub,
+configure the REST API communication IP address and port with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># ideally a private network address</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">proxy_api_ip</span> <span class="o">=</span> <span class="s1">&#39;10.0.1.4&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">proxy_api_port</span> <span class="o">=</span> <span class="mi">5432</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-the-hub-if-spawners-or-proxy-are-remote-or-isolated-in-containers">
+<span id="configuring-the-hub-if-spawners-or-proxy-are-remote-or-isolated-in-containers"></span><h3>Configuring the Hub if Spawners or Proxy are remote or isolated in containers<a class="headerlink" href="#configuring-the-hub-if-spawners-or-proxy-are-remote-or-isolated-in-containers" title="Permalink to this headline">¶</a></h3>
+<p>The Hub service also listens only on localhost (port 8080) by default.
+The Hub needs needs to be accessible from both the proxy and all Spawners.
+When spawning local servers, an IP address setting of localhost is fine.
+If <em>either</em> the Proxy <em>or</em> (more likely) the Spawners will be remote or
+isolated in containers, the Hub must listen on an IP that is accessible.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">hub_ip</span> <span class="o">=</span> <span class="s1">&#39;10.0.1.4&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">hub_port</span> <span class="o">=</span> <span class="mi">54321</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="security">
+<span id="security"></span><h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
+<p><strong>IMPORTANT:</strong> In its default configuration, JupyterHub requires SSL encryption (HTTPS) to run.
+<strong>You should not run JupyterHub without SSL encryption on a public network.</strong></p>
+<p>Security is the most important aspect of configuring Jupyter. There are three main aspects of the
+security configuration:</p>
+<ol class="simple">
+<li>SSL encryption (to enable HTTPS)</li>
+<li>Cookie secret (a key for encrypting browser cookies)</li>
+<li>Proxy authentication token (used for the Hub and other services to authenticate to the Proxy)</li>
+</ol>
+</div>
+<div class="section" id="ssl-encryption">
+<span id="ssl-encryption"></span><h2>SSL encryption<a class="headerlink" href="#ssl-encryption" title="Permalink to this headline">¶</a></h2>
+<p>Since JupyterHub includes authentication and allows arbitrary code execution, you should not run
+it without SSL (HTTPS). This will require you to obtain an official, trusted SSL certificate or
+create a self-signed certificate. Once you have obtained and installed a key and certificate you
+need to specify their locations in the configuration file as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_key</span> <span class="o">=</span> <span class="s1">&#39;/path/to/my.key&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_cert</span> <span class="o">=</span> <span class="s1">&#39;/path/to/my.cert&#39;</span>
+</pre></div>
+</div>
+<p>It is also possible to use letsencrypt (https://letsencrypt.org/) to obtain a free, trusted SSL
+certificate. If you run letsencrypt using the default options, the needed configuration is (replace <code class="docutils literal"><span class="pre">your.domain.com</span></code> by your fully qualified domain name):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_key</span> <span class="o">=</span> <span class="s1">&#39;/etc/letsencrypt/live/your.domain.com/privkey.pem&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_cert</span> <span class="o">=</span> <span class="s1">&#39;/etc/letsencrypt/live/your.domain.com/fullchain.pem&#39;</span>
+</pre></div>
+</div>
+<p>Some cert files also contain the key, in which case only the cert is needed. It is important that
+these files be put in a secure location on your server, where they are not readable by regular
+users.</p>
+<p>Note on <strong>chain certificates</strong>: If you are using a chain certificate, see also
+<a class="reference external" href="troubleshooting.md#chained-certificates-for-ssl">chained certificate for SSL</a> in the JupyterHub troubleshooting FAQ).</p>
+<p>Note: In certain cases, e.g. <strong>behind SSL termination in nginx</strong>, allowing no SSL
+running on the hub may be desired. To run the Hub without SSL, you must opt
+in by configuring and confirming the <code class="docutils literal"><span class="pre">--no-ssl</span></code> option, added as of <a class="reference external" href="./changelog.html">version 0.5</a>.</p>
+</div>
+<div class="section" id="cookie-secret">
+<span id="cookie-secret"></span><h2>Cookie secret<a class="headerlink" href="#cookie-secret" title="Permalink to this headline">¶</a></h2>
+<p>The cookie secret is an encryption key, used to encrypt the browser cookies used for
+authentication. If this value changes for the Hub, all single-user servers must also be restarted.
+Normally, this value is stored in a file, the location of which can be specified in a config file
+as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">cookie_secret_file</span> <span class="o">=</span> <span class="s1">&#39;/srv/jupyterhub/cookie_secret&#39;</span>
+</pre></div>
+</div>
+<p>The content of this file should be a long random string encoded in MIME Base64. An example would be to generate this file as:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>openssl rand -base64 <span class="m">2048</span> &gt; /srv/jupyterhub/cookie_secret
+</pre></div>
+</div>
+<p>In most deployments of JupyterHub, you should point this to a secure location on the file
+system, such as <code class="docutils literal"><span class="pre">/srv/jupyterhub/cookie_secret</span></code>. If the cookie secret file doesn&#8217;t exist when
+the Hub starts, a new cookie secret is generated and stored in the file. The
+file must not be readable by group or other or the server won&#8217;t start.
+The recommended permissions for the cookie secret file are 600 (owner-only rw).</p>
+<p>If you would like to avoid the need for files, the value can be loaded in the Hub process from
+the <code class="docutils literal"><span class="pre">JPY_COOKIE_SECRET</span></code> environment variable, which is a hex-encoded string. You
+can set it this way:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">JPY_COOKIE_SECRET</span><span class="o">=</span><span class="sb">`</span>openssl rand -hex 1024<span class="sb">`</span>
+</pre></div>
+</div>
+<p>For security reasons, this environment variable should only be visible to the Hub.
+If you set it dynamically as above, all users will be logged out each time the
+Hub starts.</p>
+<p>You can also set the secret in the configuration file itself as a binary string:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">cookie_secret</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;VERY LONG SECRET HEX STRING&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="proxy-authentication-token">
+<span id="proxy-authentication-token"></span><h2>Proxy authentication token<a class="headerlink" href="#proxy-authentication-token" title="Permalink to this headline">¶</a></h2>
+<p>The Hub authenticates its requests to the Proxy using a secret token that the Hub and Proxy agree upon. The value of this string should be a random string (for example, generated by <code class="docutils literal"><span class="pre">openssl</span> <span class="pre">rand</span> <span class="pre">-hex</span> <span class="pre">32</span></code>). You can pass this value to the Hub and Proxy using either the <code class="docutils literal"><span class="pre">CONFIGPROXY_AUTH_TOKEN</span></code> environment variable:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CONFIGPROXY_AUTH_TOKEN</span><span class="o">=</span><span class="sb">`</span>openssl rand -hex 32<span class="sb">`</span>
+</pre></div>
+</div>
+<p>This environment variable needs to be visible to the Hub and Proxy.</p>
+<p>Or you can set the value in the configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">proxy_auth_token</span> <span class="o">=</span> <span class="s1">&#39;0bc02bede919e99a26de1e2a7a5aadfaf6228de836ec39a05a6c6942831d8fe5&#39;</span>
+</pre></div>
+</div>
+<p>If you don&#8217;t set the Proxy authentication token, the Hub will generate a random key itself, which
+means that any time you restart the Hub you <strong>must also restart the Proxy</strong>. If the proxy is a
+subprocess of the Hub, this should happen automatically (this is the default configuration).</p>
+<p>Another time you must set the Proxy authentication token yourself is if you want other services, such as <a class="reference external" href="https://github.com/jupyter/nbgrader">nbgrader</a> to also be able to connect to the Proxy.</p>
+</div>
+<div class="section" id="configuring-authentication">
+<span id="configuring-authentication"></span><h2>Configuring authentication<a class="headerlink" href="#configuring-authentication" title="Permalink to this headline">¶</a></h2>
+<p>The default Authenticator uses <a class="reference external" href="https://en.wikipedia.org/wiki/Pluggable_authentication_module">PAM</a> to authenticate system users with their username and password.
+The default behavior of this Authenticator is to allow any user with an account and password on the system to login.
+You can restrict which users are allowed to login with <code class="docutils literal"><span class="pre">Authenticator.whitelist</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Authenticator</span><span class="o">.</span><span class="n">whitelist</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mal&#39;</span><span class="p">,</span> <span class="s1">&#39;zoe&#39;</span><span class="p">,</span> <span class="s1">&#39;inara&#39;</span><span class="p">,</span> <span class="s1">&#39;kaylee&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Admin users of JupyterHub have the ability to take actions on users&#8217; behalf,
+such as stopping and restarting their servers,
+and adding and removing new users from the whitelist.
+Any users in the admin list are automatically added to the whitelist,
+if they are not already present.
+The set of initial Admin users can configured as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Authenticator</span><span class="o">.</span><span class="n">admin_users</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mal&#39;</span><span class="p">,</span> <span class="s1">&#39;zoe&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal"><span class="pre">JupyterHub.admin_access</span></code> is True (not default),
+then admin users have permission to log in <em>as other users</em> on their respective machines, for debugging.
+<strong>You should make sure your users know if admin_access is enabled.</strong></p>
+<div class="section" id="adding-and-removing-users">
+<span id="adding-and-removing-users"></span><h3>Adding and removing users<a class="headerlink" href="#adding-and-removing-users" title="Permalink to this headline">¶</a></h3>
+<p>Users can be added and removed to the Hub via the admin panel or REST API. These users will be
+added to the whitelist and database. Restarting the Hub will not require manually updating the
+whitelist in your config file, as the users will be loaded from the database. This means that
+after starting the Hub once, it is not sufficient to remove users from the whitelist in your
+config file. You must also remove them from the database, either by discarding the database file,
+or via the admin UI.</p>
+<p>The default <code class="docutils literal"><span class="pre">PAMAuthenticator</span></code> is one case of a special kind of authenticator, called a
+<code class="docutils literal"><span class="pre">LocalAuthenticator</span></code>, indicating that it manages users on the local system. When you add a user to
+the Hub, a <code class="docutils literal"><span class="pre">LocalAuthenticator</span></code> checks if that user already exists. Normally, there will be an
+error telling you that the user doesn&#8217;t exist. If you set the configuration value</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">LocalAuthenticator</span><span class="o">.</span><span class="n">create_system_users</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>however, adding a user to the Hub that doesn&#8217;t already exist on the system will result in the Hub
+creating that user via the system <code class="docutils literal"><span class="pre">adduser</span></code> command line tool. This option is typically used on
+hosted deployments of JupyterHub, to avoid the need to manually create all your users before
+launching the service. It is not recommended when running JupyterHub in situations where
+JupyterHub users maps directly onto UNIX users.</p>
+</div>
+</div>
+<div class="section" id="configuring-single-user-servers">
+<span id="configuring-single-user-servers"></span><h2>Configuring single-user servers<a class="headerlink" href="#configuring-single-user-servers" title="Permalink to this headline">¶</a></h2>
+<p>Since the single-user server is an instance of <code class="docutils literal"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>, an entire separate
+multi-process application, there are many aspect of that server can configure, and a lot of ways
+to express that configuration.</p>
+<p>At the JupyterHub level, you can set some values on the Spawner. The simplest of these is
+<code class="docutils literal"><span class="pre">Spawner.notebook_dir</span></code>, which lets you set the root directory for a user&#8217;s server. This root
+notebook directory is the highest level directory users will be able to access in the notebook
+dashboard. In this example, the root notebook directory is set to <code class="docutils literal"><span class="pre">~/notebooks</span></code>, where <code class="docutils literal"><span class="pre">~</span></code> is
+expanded to the user&#8217;s home directory.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Spawner</span><span class="o">.</span><span class="n">notebook_dir</span> <span class="o">=</span> <span class="s1">&#39;~/notebooks&#39;</span>
+</pre></div>
+</div>
+<p>You can also specify extra command-line arguments to the notebook server with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Spawner</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--debug&#39;</span><span class="p">,</span> <span class="s1">&#39;--profile=PHYS131&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This could be used to set the users default page for the single user server:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Spawner</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--NotebookApp.default_url=/notebooks/Welcome.ipynb&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Since the single-user server extends the notebook server application,
+it still loads configuration from the <code class="docutils literal"><span class="pre">ipython_notebook_config.py</span></code> config file.
+Each user may have one of these files in <code class="docutils literal"><span class="pre">$HOME/.ipython/profile_default/</span></code>.
+IPython also supports loading system-wide config files from <code class="docutils literal"><span class="pre">/etc/ipython/</span></code>,
+which is the place to put configuration that you want to affect all of your users.</p>
+</div>
+<div class="section" id="external-services">
+<span id="external-services"></span><h2>External services<a class="headerlink" href="#external-services" title="Permalink to this headline">¶</a></h2>
+<p>JupyterHub has a REST API that can be used by external services like the
+<a class="reference external" href="https://github.com/jupyterhub/jupyterhub/blob/master/examples/cull-idle/cull_idle_servers.py">cull_idle_servers</a>
+script which monitors and kills idle single-user servers periodically. In order to run such an
+external service, you need to provide it an API token. In the case of <code class="docutils literal"><span class="pre">cull_idle_servers</span></code>, it is passed
+as the environment variable called <code class="docutils literal"><span class="pre">JPY_API_TOKEN</span></code>.</p>
+<p>Currently there are two ways of registering that token with JupyterHub. The first one is to use
+the <code class="docutils literal"><span class="pre">jupyterhub</span></code> command to generate a token for a specific hub user:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ jupyterhub token &lt;username&gt;
+</pre></div>
+</div>
+<p>As of <a class="reference external" href="./changelog.html">version 0.6.0</a>, the preferred way of doing this is to first generate an API token:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ openssl rand -hex 32
+</pre></div>
+</div>
+<p>and then write it to your JupyterHub configuration file (note that the <strong>key</strong> is the token while the <strong>value</strong> is the username):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">api_tokens</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;token&#39;</span> <span class="p">:</span> <span class="s1">&#39;username&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Upon restarting JupyterHub, you should see a message like below in the logs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Adding</span> <span class="n">API</span> <span class="n">token</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Now you can run your script, i.e. <code class="docutils literal"><span class="pre">cull_idle_servers</span></code>, by providing it the API token and it will authenticate through
+the REST API to interact with it.</p>
+</div>
+<div class="section" id="file-locations">
+<span id="file-locations"></span><h2>File locations<a class="headerlink" href="#file-locations" title="Permalink to this headline">¶</a></h2>
+<p>It is recommended to put all of the files used by JupyterHub into standard UNIX filesystem locations.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/srv/jupyterhub</span></code> for all security and runtime files</li>
+<li><code class="docutils literal"><span class="pre">/etc/jupyterhub</span></code> for all configuration files</li>
+<li><code class="docutils literal"><span class="pre">/var/log</span></code> for log files</li>
+</ul>
+</div>
+<div class="section" id="example">
+<span id="example"></span><h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>In the following example, we show a configuration files for a fairly standard JupyterHub deployment with the following assumptions:</p>
+<ul class="simple">
+<li>JupyterHub is running on a single cloud server</li>
+<li>Using SSL on the standard HTTPS port 443</li>
+<li>You want to use <a class="reference external" href="https://github.com/jupyter/oauthenticator">GitHub OAuth</a> for login</li>
+<li>You need the users to exist locally on the server</li>
+<li>You want users&#8217; notebooks to be served from <code class="docutils literal"><span class="pre">~/assignments</span></code> to allow users to browse for notebooks within
+other users home directories</li>
+<li>You want the landing page for each user to be a Welcome.ipynb notebook in their assignments directory.</li>
+<li>All runtime files are put into <code class="docutils literal"><span class="pre">/srv/jupyterhub</span></code> and log files in <code class="docutils literal"><span class="pre">/var/log</span></code>.</li>
+</ul>
+<p>Let&#8217;s start out with <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># jupyterhub_config.py</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">pjoin</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
+
+<span class="n">runtime_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/srv/jupyterhub&#39;</span><span class="p">)</span>
+<span class="n">ssl_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">runtime_dir</span><span class="p">,</span> <span class="s1">&#39;ssl&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ssl_dir</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ssl_dir</span><span class="p">)</span>
+
+
+<span class="c1"># https on :443</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">443</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_key</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">ssl_dir</span><span class="p">,</span> <span class="s1">&#39;ssl.key&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_cert</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">ssl_dir</span><span class="p">,</span> <span class="s1">&#39;ssl.cert&#39;</span><span class="p">)</span>
+
+<span class="c1"># put the JupyterHub cookie secret and state db</span>
+<span class="c1"># in /var/run/jupyterhub</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">cookie_secret_file</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">runtime_dir</span><span class="p">,</span> <span class="s1">&#39;cookie_secret&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">db_url</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">runtime_dir</span><span class="p">,</span> <span class="s1">&#39;jupyterhub.sqlite&#39;</span><span class="p">)</span>
+<span class="c1"># or `--db=/path/to/jupyterhub.sqlite` on the command-line</span>
+
+<span class="c1"># put the log file in /var/log</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="s1">&#39;/var/log/jupyterhub.log&#39;</span>
+
+<span class="c1"># use GitHub OAuthenticator for local users</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">authenticator_class</span> <span class="o">=</span> <span class="s1">&#39;oauthenticator.LocalGitHubOAuthenticator&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">GitHubOAuthenticator</span><span class="o">.</span><span class="n">oauth_callback_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OAUTH_CALLBACK_URL&#39;</span><span class="p">]</span>
+<span class="c1"># create system users that don&#39;t exist yet</span>
+<span class="n">c</span><span class="o">.</span><span class="n">LocalAuthenticator</span><span class="o">.</span><span class="n">create_system_users</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># specify users and admin</span>
+<span class="n">c</span><span class="o">.</span><span class="n">Authenticator</span><span class="o">.</span><span class="n">whitelist</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;rgbkrk&#39;</span><span class="p">,</span> <span class="s1">&#39;minrk&#39;</span><span class="p">,</span> <span class="s1">&#39;jhamrick&#39;</span><span class="p">}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">Authenticator</span><span class="o">.</span><span class="n">admin_users</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;jhamrick&#39;</span><span class="p">,</span> <span class="s1">&#39;rgbkrk&#39;</span><span class="p">}</span>
+
+<span class="c1"># start single-user notebook servers in ~/assignments,</span>
+<span class="c1"># with ~/assignments/Welcome.ipynb as the default landing page</span>
+<span class="c1"># this config could also be put in</span>
+<span class="c1"># /etc/ipython/ipython_notebook_config.py</span>
+<span class="n">c</span><span class="o">.</span><span class="n">Spawner</span><span class="o">.</span><span class="n">notebook_dir</span> <span class="o">=</span> <span class="s1">&#39;~/assignments&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">Spawner</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--NotebookApp.default_url=/notebooks/Welcome.ipynb&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Using the GitHub Authenticator <a class="reference external" href="https://github.com/jupyter/oauthenticator#setup">requires a few additional env variables</a>,
+which we will need to set when we launch the server:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GITHUB_CLIENT_ID</span><span class="o">=</span>github_id
+<span class="nb">export</span> <span class="nv">GITHUB_CLIENT_SECRET</span><span class="o">=</span>github_secret
+<span class="nb">export</span> <span class="nv">OAUTH_CALLBACK_URL</span><span class="o">=</span>https://example.com/hub/oauth_callback
+<span class="nb">export</span> <span class="nv">CONFIGPROXY_AUTH_TOKEN</span><span class="o">=</span>super-secret
+jupyterhub -f /path/to/aboveconfig.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="further-reading">
+<span id="further-reading"></span><h1>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="./authenticators.html">Custom Authenticators</a></li>
+<li><a class="reference external" href="./spawners.html">Custom Spawners</a></li>
+<li><a class="reference external" href="./troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="howitworks.html" class="btn btn-neutral float-right" title="How JupyterHub works" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="JupyterHub" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

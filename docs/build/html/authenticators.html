@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Writing a custom Authenticator &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="index.html"/>
+        <link rel="next" title="Writing a custom Spawner" href="spawners.html"/>
+        <link rel="prev" title="Web Security in JupyterHub" href="websecurity.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Writing a custom Authenticator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics-of-authenticators">Basics of Authenticators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authenticator-authenticate">Authenticator.authenticate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authenticator-whitelist">Authenticator.whitelist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#normalizing-and-validating-usernames">Normalizing and validating usernames</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validating-usernames">Validating usernames</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#oauth-and-other-non-password-logins">OAuth and other non-password logins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Writing a custom Authenticator</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/authenticators.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="writing-a-custom-authenticator">
+<span id="writing-a-custom-authenticator"></span><h1>Writing a custom Authenticator<a class="headerlink" href="#writing-a-custom-authenticator" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://github.com/jupyter/jupyterhub/blob/master/jupyterhub/auth.py">Authenticator</a> is the mechanism for authorizing users.
+Basic authenticators use simple username and password authentication.
+JupyterHub ships only with a <a class="reference external" href="https://en.wikipedia.org/wiki/Pluggable_authentication_module">PAM</a>-based Authenticator,
+for logging in with local user accounts.</p>
+<p>You can use custom Authenticator subclasses to enable authentication via other systems.
+One such example is using <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub OAuth</a>.</p>
+<p>Because the username is passed from the Authenticator to the Spawner,
+a custom Authenticator and Spawner are often used together.</p>
+<p>See a list of custom Authenticators <a class="reference external" href="https://github.com/jupyter/jupyterhub/wiki/Authenticators">on the wiki</a>.</p>
+<div class="section" id="basics-of-authenticators">
+<span id="basics-of-authenticators"></span><h2>Basics of Authenticators<a class="headerlink" href="#basics-of-authenticators" title="Permalink to this headline">¶</a></h2>
+<p>A basic Authenticator has one central method:</p>
+<div class="section" id="authenticator-authenticate">
+<span id="authenticator-authenticate"></span><h3>Authenticator.authenticate<a class="headerlink" href="#authenticator-authenticate" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Authenticator</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This method is passed the tornado RequestHandler and the POST data from the login form.
+Unless the login form has been customized, <code class="docutils literal"><span class="pre">data</span></code> will have two keys:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">username</span></code> (self-explanatory)</li>
+<li><code class="docutils literal"><span class="pre">password</span></code> (also self-explanatory)</li>
+</ul>
+<p><code class="docutils literal"><span class="pre">authenticate</span></code>&#8216;s job is simple:</p>
+<ul class="simple">
+<li>return a username (non-empty str)
+of the authenticated user if authentication is successful</li>
+<li>return <code class="docutils literal"><span class="pre">None</span></code> otherwise</li>
+</ul>
+<p>Writing an Authenticator that looks up passwords in a dictionary
+requires only overriding this one method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>
+<span class="kn">from</span> <span class="nn">IPython.utils.traitlets</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">jupyterhub.auth</span> <span class="kn">import</span> <span class="n">Authenticator</span>
+
+<span class="k">class</span> <span class="nc">DictionaryAuthenticator</span><span class="p">(</span><span class="n">Authenticator</span><span class="p">):</span>
+
+    <span class="n">passwords</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;dict of username:password for authentication&quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="nd">@gen.coroutine</span>
+    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passwords</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authenticator-whitelist">
+<span id="authenticator-whitelist"></span><h3>Authenticator.whitelist<a class="headerlink" href="#authenticator-whitelist" title="Permalink to this headline">¶</a></h3>
+<p>Authenticators can specify a whitelist of usernames to allow authentication.
+For local user authentication (e.g. PAM), this lets you limit which users
+can login.</p>
+</div>
+</div>
+<div class="section" id="normalizing-and-validating-usernames">
+<span id="normalizing-and-validating-usernames"></span><h2>Normalizing and validating usernames<a class="headerlink" href="#normalizing-and-validating-usernames" title="Permalink to this headline">¶</a></h2>
+<p>Since the Authenticator and Spawner both use the same username,
+sometimes you want to transform the name coming from the authentication service
+(e.g. turning email addresses into local system usernames) before adding them to the Hub service.
+Authenticators can define <code class="docutils literal"><span class="pre">normalize_username</span></code>, which takes a username.
+The default normalization is to cast names to lowercase</p>
+<p>For simple mappings, a configurable dict <code class="docutils literal"><span class="pre">Authenticator.username_map</span></code> is used to turn one name into another:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Authenticator</span><span class="o">.</span><span class="n">username_map</span>  <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;service-name&#39;</span><span class="p">:</span> <span class="s1">&#39;localname&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="validating-usernames">
+<span id="validating-usernames"></span><h3>Validating usernames<a class="headerlink" href="#validating-usernames" title="Permalink to this headline">¶</a></h3>
+<p>In most cases, there is a very limited set of acceptable usernames.
+Authenticators can define <code class="docutils literal"><span class="pre">validate_username(username)</span></code>,
+which should return True for a valid username and False for an invalid one.
+The primary effect this has is improving error messages during user creation.</p>
+<p>The default behavior is to use configurable <code class="docutils literal"><span class="pre">Authenticator.username_pattern</span></code>,
+which is a regular expression string for validation.</p>
+<p>To only allow usernames that start with &#8216;w&#8217;:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">Authenticator</span><span class="o">.</span><span class="n">username_pattern</span> <span class="o">=</span> <span class="s1">r&#39;w.*&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="oauth-and-other-non-password-logins">
+<span id="oauth-and-other-non-password-logins"></span><h2>OAuth and other non-password logins<a class="headerlink" href="#oauth-and-other-non-password-logins" title="Permalink to this headline">¶</a></h2>
+<p>Some login mechanisms, such as <a class="reference external" href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>, don&#8217;t map onto username+password.
+For these, you can override the login handlers.</p>
+<p>You can see an example implementation of an Authenticator that uses <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub OAuth</a>
+at <a class="reference external" href="https://github.com/jupyter/oauthenticator">OAuthenticator</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spawners.html" class="btn btn-neutral float-right" title="Writing a custom Spawner" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="websecurity.html" class="btn btn-neutral" title="Web Security in JupyterHub" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OAuthenticator &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>OAuthenticator</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/authenticators/oauthenticator/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oauthenticator">
+<span id="oauthenticator"></span><h1>OAuthenticator<a class="headerlink" href="#oauthenticator" title="Permalink to this headline">¶</a></h1>
+<p>OAuth + JupyterHub Authenticator = OAuthenticator</p>
+<div class="section" id="examples">
+<span id="examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>For an example docker image using OAuthenticator, see the <a class="reference external" href="example">example</a>
+directory.</p>
+<p>There is <a class="reference external" href="https://github.com/jupyter/dockerspawner/tree/master/examples/oauth">another
+example</a>
+for using GitHub OAuth to spawn each user&#8217;s server in a separate docker
+container.</p>
+</div>
+<div class="section" id="installation">
+<span id="installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Install with pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">oauthenticator</span>
+</pre></div>
+</div>
+<p>Or clone the repo and do a dev install:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jupyter</span><span class="o">/</span><span class="n">oauthenticator</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">oauthenticator</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-setup">
+<span id="github-setup"></span><h2>GitHub Setup<a class="headerlink" href="#github-setup" title="Permalink to this headline">¶</a></h2>
+<p>First, you&#8217;ll need to create a <a class="reference external" href="https://github.com/settings/applications/new">GitHub OAuth
+application</a>. Make sure the
+callback URL is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span><span class="o">//</span><span class="p">[</span><span class="n">your</span><span class="o">-</span><span class="n">host</span><span class="p">]</span><span class="o">/</span><span class="n">hub</span><span class="o">/</span><span class="n">oauth_callback</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal"><span class="pre">[your-host]</span></code> is where your server will be running. Such as
+<code class="docutils literal"><span class="pre">example.com:8000</span></code>.</p>
+<p>Then, add the following to your <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code> file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">authenticator_class</span> <span class="o">=</span> <span class="s1">&#39;oauthenticator.GitHubOAuthenticator&#39;</span>
+</pre></div>
+</div>
+<p>(you can also use <code class="docutils literal"><span class="pre">LocalGitHubOAuthenticator</span></code> to handle both local and GitHub
+auth).</p>
+<p>You will additionally need to specify the OAuth callback URL, the client ID, and
+the client secret (you should have gotten these when you created your OAuth app
+on GitHub). For example, if these values are in the environment variables
+<code class="docutils literal"><span class="pre">$OAUTH_CALLBACK_URL</span></code>, <code class="docutils literal"><span class="pre">$GITHUB_CLIENT_ID</span></code> and <code class="docutils literal"><span class="pre">$GITHUB_CLIENT_SECRET</span></code>, you
+should add the following to your <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">c</span><span class="o">.</span><span class="n">GitHubOAuthenticator</span><span class="o">.</span><span class="n">oauth_callback_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OAUTH_CALLBACK_URL&#39;</span><span class="p">]</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">GitHubOAuthenticator</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_CLIENT_ID&#39;</span><span class="p">]</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">GitHubOAuthenticator</span><span class="o">.</span><span class="n">client_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_CLIENT_SECRET&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="google-setup">
+<span id="google-setup"></span><h2>Google Setup<a class="headerlink" href="#google-setup" title="Permalink to this headline">¶</a></h2>
+<p>Visit https://console.developers.google.com to set up an OAuth client ID and secret. See <a class="reference external" href="https://developers.google.com/identity/protocols/OAuth2">Google&#8217;s documentation</a> on how to create OAUth 2.0 client credentials. The <code class="docutils literal"><span class="pre">Authorized</span> <span class="pre">JavaScript</span> <span class="pre">origins</span></code> should be set to to your hub&#8217;s public address while <code class="docutils literal"><span class="pre">Authorized</span> <span class="pre">redirect</span> <span class="pre">URIs</span></code> should be set to the same but followed by <code class="docutils literal"><span class="pre">/hub/oauth_callback</span></code>.</p>
+<p>Set the generated client ID and secret in your <code class="docutils literal"><span class="pre">jupyterhub_config</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">c</span><span class="o">.</span><span class="n">GoogleOAuthenticator</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OAUTH_CLIENT_ID&#39;</span><span class="p">]</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">GoogleOAuthenticator</span><span class="o">.</span><span class="n">client_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OAUTH_CLIENT_SECRET&#39;</span><span class="p">]</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">GoogleOAuthenticator</span><span class="o">.</span><span class="n">oauth_callback_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OAUTH_CALLBACK_URL&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>For a Google Apps domain you can set:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">c</span><span class="o">.</span><span class="n">GoogleOAuthenticator</span><span class="o">.</span><span class="n">hosted_domain</span> <span class="o">=</span> <span class="s1">&#39;mycollege.edu&#39;</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">GoogleOAuthenticator</span><span class="o">.</span><span class="n">login_service</span> <span class="o">=</span> <span class="s1">&#39;My College&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

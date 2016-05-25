@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DockerSpawner &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>DockerSpawner</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/spawners/dockerspawner/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dockerspawner">
+<span id="dockerspawner"></span><h1>DockerSpawner<a class="headerlink" href="#dockerspawner" title="Permalink to this headline">¶</a></h1>
+<p>Enables <a class="reference external" href="https://github.com/jupyterhub/jupyterhub">JupyterHub</a> to spawn
+user servers in docker containers.</p>
+<div class="section" id="setting-up-the-spawner">
+<span id="setting-up-the-spawner"></span><h2>Setting up the spawner<a class="headerlink" href="#setting-up-the-spawner" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Install to the system:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<div class="section" id="dockerspawner">
+<span id="id1"></span><h3>DockerSpawner<a class="headerlink" href="#dockerspawner" title="Permalink to this headline">¶</a></h3>
+<p>For basic, temporary notebook servers, tell JupyterHub to use DockerSpawner by
+adding the following to your <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">spawner_class</span> <span class="o">=</span> <span class="s1">&#39;dockerspawner.DockerSpawner&#39;</span>
+</pre></div>
+</div>
+<p>There is a complete example in <a class="reference external" href="examples/oauth">examples/oauth</a> for
+using GitHub OAuth to authenticate users, and spawn containers with docker.</p>
+</div>
+<div class="section" id="systemuserspawner">
+<span id="systemuserspawner"></span><h3>SystemUserSpawner<a class="headerlink" href="#systemuserspawner" title="Permalink to this headline">¶</a></h3>
+<p>If you want to spawn notebook servers for users that correspond to system users,
+you can use the SystemUserSpawner instead. Add the following to your
+<code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">spawner_class</span> <span class="o">=</span> <span class="s1">&#39;dockerspawner.SystemUserSpawner&#39;</span>
+</pre></div>
+</div>
+<p>The SystemUserSpawner will also need to know where the user home directories
+are on the host. By default, it expects them to be in <code class="docutils literal"><span class="pre">/home/&lt;username&gt;</span></code>, but if
+you want to change this, you&#8217;ll need to further modify the
+<code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>. For example, the following will look for a user&#8217;s home
+directory on the host system at <code class="docutils literal"><span class="pre">/volumes/user/&lt;username&gt;</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">SystemUserSpawner</span><span class="o">.</span><span class="n">host_homedir_format_string</span> <span class="o">=</span> <span class="s1">&#39;/volumes/user/</span><span class="si">{username}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>For a full example of how <code class="docutils literal"><span class="pre">SystemUserSpawner</span></code> is used, see the
+<a class="reference external" href="https://github.com/jhamrick/compmodels-jupyterhub">compmodels-jupyterhub</a>
+repository (this additionally runs the JupyterHub server within a docker
+container, and authenticates users using GitHub OAuth).</p>
+</div>
+</div>
+<div class="section" id="building-the-docker-images">
+<span id="building-the-docker-images"></span><h2>Building the docker images<a class="headerlink" href="#building-the-docker-images" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="single-user-notebook-server">
+<span id="single-user-notebook-server"></span><h3>Single user notebook server<a class="headerlink" href="#single-user-notebook-server" title="Permalink to this headline">¶</a></h3>
+<p>Build the <code class="docutils literal"><span class="pre">jupyterhub/singleuser</span></code> container with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">jupyterhub</span><span class="o">/</span><span class="n">singleuser</span> <span class="n">singleuser</span>
+</pre></div>
+</div>
+<p>or use <code class="docutils literal"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">jupyterhub/singleuser</span></code> to download it from <a class="reference external" href="https://registry.hub.docker.com/u/jupyterhub/singleuser/">Docker
+Hub</a>.</p>
+</div>
+<div class="section" id="system-user-notebook-server">
+<span id="system-user-notebook-server"></span><h3>System user notebook server<a class="headerlink" href="#system-user-notebook-server" title="Permalink to this headline">¶</a></h3>
+<p>Or the <code class="docutils literal"><span class="pre">jupyterhub/systemuser</span></code> container with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">jupyterhub</span><span class="o">/</span><span class="n">systemuser</span> <span class="n">systemuser</span>
+</pre></div>
+</div>
+<p>or use <code class="docutils literal"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">jupyterhub/systemuser</span></code> to download it from <a class="reference external" href="https://registry.hub.docker.com/u/jupyterhub/systemuser/">Docker
+Hub</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

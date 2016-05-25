@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How JupyterHub works &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="index.html"/>
+        <link rel="next" title="Web Security in JupyterHub" href="websecurity.html"/>
+        <link rel="prev" title="Getting started with JupyterHub" href="getting-started.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How JupyterHub works</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-jupyterhub">Customizing  JupyterHub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spawning">Spawning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>How JupyterHub works</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/howitworks.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-jupyterhub-works">
+<span id="how-jupyterhub-works"></span><h1>How JupyterHub works<a class="headerlink" href="#how-jupyterhub-works" title="Permalink to this headline">¶</a></h1>
+<p>JupyterHub is a multi-user server that manages and proxies multiple instances of the single-user <del>IPython</del> Jupyter notebook server.</p>
+<p>There are three basic processes involved:</p>
+<ul class="simple">
+<li>multi-user Hub (Python/Tornado)</li>
+<li><a class="reference external" href="https://github.com/jupyter/configurable-http-proxy">configurable http proxy</a> (node-http-proxy)</li>
+<li>multiple single-user IPython notebook servers (Python/IPython/Tornado)</li>
+</ul>
+<p>The proxy is the only process that listens on a public interface.
+The Hub sits behind the proxy at <code class="docutils literal"><span class="pre">/hub</span></code>.
+Single-user servers sit behind the proxy at <code class="docutils literal"><span class="pre">/user/[username]</span></code>.</p>
+<div class="section" id="logging-in">
+<span id="logging-in"></span><h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this headline">¶</a></h2>
+<p>When a new browser logs in to JupyterHub, the following events take place:</p>
+<ul class="simple">
+<li>Login data is handed to the <a class="reference external" href="#authentication">Authenticator</a> instance for validation</li>
+<li>The Authenticator returns the username, if login information is valid</li>
+<li>A single-user server instance is <a class="reference external" href="#spawning">Spawned</a> for the logged-in user</li>
+<li>When the server starts, the proxy is notified to forward <code class="docutils literal"><span class="pre">/user/[username]/*</span></code> to the single-user server</li>
+<li>Two cookies are set, one for <code class="docutils literal"><span class="pre">/hub/</span></code> and another for <code class="docutils literal"><span class="pre">/user/[username]</span></code>,
+containing an encrypted token.</li>
+<li>The browser is redirected to <code class="docutils literal"><span class="pre">/user/[username]</span></code>, which is handled by the single-user server</li>
+</ul>
+<p>Logging into a single-user server is authenticated via the Hub:</p>
+<ul class="simple">
+<li>On request, the single-user server forwards the encrypted cookie to the Hub for verification</li>
+<li>The Hub replies with the username if it is a valid cookie</li>
+<li>If the user is the owner of the server, access is allowed</li>
+<li>If it is the wrong user or an invalid cookie, the browser is redirected to <code class="docutils literal"><span class="pre">/hub/login</span></code></li>
+</ul>
+</div>
+<div class="section" id="customizing-jupyterhub">
+<span id="customizing-jupyterhub"></span><h2>Customizing  JupyterHub<a class="headerlink" href="#customizing-jupyterhub" title="Permalink to this headline">¶</a></h2>
+<p>There are two basic extension points for JupyterHub: How users are authenticated,
+and how their server processes are started.
+Each is governed by a customizable class,
+and JupyterHub ships with just the most basic version of each.</p>
+<p>To enable custom authentication and/or spawning,
+subclass Authenticator or Spawner,
+and override the relevant methods.</p>
+<div class="section" id="authentication">
+<span id="authentication"></span><h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
+<p>Authentication is customizable via the Authenticator class.
+Authentication can be replaced by any mechanism,
+such as OAuth, Kerberos, etc.</p>
+<p>JupyterHub only ships with <a class="reference external" href="https://en.wikipedia.org/wiki/Pluggable_authentication_module">PAM</a> authentication,
+which requires the server to be run as root,
+or at least with access to the PAM service,
+which regular users typically do not have
+(on Ubuntu, this requires being added to the <code class="docutils literal"><span class="pre">shadow</span></code> group).</p>
+<p><a class="reference external" href="authenticators.md">More info on custom Authenticators</a>.</p>
+<p>See a list of custom Authenticators <a class="reference external" href="https://github.com/jupyter/jupyterhub/wiki/Authenticators">on the wiki</a>.</p>
+</div>
+<div class="section" id="spawning">
+<span id="spawning"></span><h3>Spawning<a class="headerlink" href="#spawning" title="Permalink to this headline">¶</a></h3>
+<p>Each single-user server is started by a Spawner.
+The Spawner represents an abstract interface to a process,
+and needs to be able to take three actions:</p>
+<ol class="simple">
+<li>start the process</li>
+<li>poll whether the process is still running</li>
+<li>stop the process</li>
+</ol>
+<p><a class="reference external" href="spawners.md">More info on custom Spawners</a>.</p>
+<p>See a list of custom Spawners <a class="reference external" href="https://github.com/jupyter/jupyterhub/wiki/Spawners">on the wiki</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="websecurity.html" class="btn btn-neutral float-right" title="Web Security in JupyterHub" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting-started.html" class="btn btn-neutral" title="Getting started with JupyterHub" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

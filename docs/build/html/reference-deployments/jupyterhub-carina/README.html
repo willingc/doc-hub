@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>jupyterhub-carina &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>jupyterhub-carina</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/reference-deployments/jupyterhub-carina/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="jupyterhub-carina">
+<span id="jupyterhub-carina"></span><h1>jupyterhub-carina<a class="headerlink" href="#jupyterhub-carina" title="Permalink to this headline">¶</a></h1>
+<p>Carina support for JupyterHub. Authenticate your users with Carina, then run their Jupyter servers on their own Carina clusters.</p>
+<p>For an example of what this looks like, head over to <a class="reference external" href="https://howtowhale.com">howtowhale.com</a> and sign in with your Carina account.</p>
+</div>
+<div class="section" id="installation">
+<span id="installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">jupyterhub-carina</span></code></p>
+</div>
+<div class="section" id="prerequisites">
+<span id="prerequisites"></span><h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h1>
+<p>JupyterHub communicates with Carina using OAuth. Before your JupyterHub installation can integrate with Carina, you must
+first register the application. See the <a class="reference external" href="https://getcarina.com/docs/reference/oauth-integration/#register-your-application">Carina OAuth documentation</a> for instructions on how to register. When asked for the <strong>Redirect URI</strong>, use the following format <code class="docutils literal"><span class="pre">https://&lt;jupyterhub_domain&gt;/hub/oauth_callback</span></code>. The registered callback or redirect URL must match the value in your JupyterHub configuration file.</p>
+<p><strong>Note</strong>: If you have customized the JupyterHub <code class="docutils literal"><span class="pre">base_url</span></code>, then the Redirect URI must be updated to match.</p>
+<p>After you have registered, note the <strong>Application Id</strong>, <strong>Secret</strong> and <strong>Callback URL</strong> because they are required
+in order to configure your JupyterHub server to use Carina.</p>
+</div>
+<div class="section" id="configuration">
+<span id="configuration"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<ol class="simple">
+<li>Set the <code class="docutils literal"><span class="pre">OAUTH_CLIENT_ID</span></code> and <code class="docutils literal"><span class="pre">OAUTH_CLIENT_SECRET</span></code> environment variables, or use the optional configuration values in the next section to specify your OAuth credentials.</li>
+<li>Update your <a class="reference external" href="http://jupyterhub.readthedocs.org/en/latest/getting-started.html#how-to-configure-jupyterhub">JupyterHub&#8217;s configuration file</a>, <strong>jupyterhub_config.py</strong>, with the required configuration settings. Replace the placeholder values (denoted with angle brackets) with appropriate values.<ul>
+<li><code class="docutils literal"><span class="pre">&lt;carina_username&gt;</span></code>: The username or email address that you use to log into <a class="reference external" href="http://getcarina.com">http://getcarina.com</a>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;jupyterhub_domain&gt;</span></code>: The domain name or IP address of your JupyterHub server.</li>
+</ul>
+</li>
+</ol>
+<p>Below is an example configuration file with only the required values specified:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+
+<span class="c1"># Required: Configure JupyterHub to authenticate against Carina</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">authenticator_class</span> <span class="o">=</span> <span class="s2">&quot;jupyterhub_carina.CarinaAuthenticator&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">admin_users</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;carina_username&gt;&quot;</span><span class="p">]</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">oauth_callback_url</span> <span class="o">=</span> <span class="s2">&quot;https://&lt;jupyterhub_domain&gt;/hub/oauth_callback&quot;</span>
+
+<span class="c1"># Required: Configure JupyterHub to spawn user servers on Carina</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">hub_ip</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.0&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">spawner_class</span> <span class="o">=</span> <span class="s2">&quot;jupyterhub_carina.CarinaSpawner&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaSpawner</span><span class="o">.</span><span class="n">hub_ip_connect</span> <span class="o">=</span> <span class="s2">&quot;&lt;jupyterhub_domain&gt;&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="optional-variables">
+<span id="optional-variables"></span><h2>Optional Variables<a class="headerlink" href="#optional-variables" title="Permalink to this headline">¶</a></h2>
+<p>You can customize how the user&#8217;s Jupyter server is created or how your OAuth credentials are specified.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">&lt;cluster_name&gt;</span></code>: The name of the user&#8217;s Carina cluster. Defaults to <code class="docutils literal"><span class="pre">jupyterhub</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;container_name&gt;</span></code>: The name of the Jupyter server container running on the user&#8217;s cluster. Defaults to <code class="docutils literal"><span class="pre">jupyter</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;container_image&gt;</span></code>: The name of the image to use for the user&#8217;s server. Defaults to <code class="docutils literal"><span class="pre">jupyter/singleuser</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;start_timeout&gt;</span></code>: The timeout when starting a user&#8217;s server, this value must account for cluster creation and
+pulling the <code class="docutils literal"><span class="pre">container_image</span></code>. Defaults to <code class="docutils literal"><span class="pre">300</span></code> (5 minutes), but may need to be increased depending on the
+size of <code class="docutils literal"><span class="pre">container_image</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;cluster_polling_interval&gt;</span></code>: The number of seconds between polling for a user&#8217;s cluster to become active.
+Defaults to <code class="docutils literal"><span class="pre">30</span></code> seconds.</li>
+<li><code class="docutils literal"><span class="pre">&lt;client_id_env&gt;</span></code>: The environment variable containing your Carina OAuth Application Id.
+Defaults to <code class="docutils literal"><span class="pre">OAUTH_CLIENT_ID</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;client_secret_env&gt;</span></code>: The environment variable containing your Carina OAuth Secret.
+Defaults to <code class="docutils literal"><span class="pre">OAUTH_CLIENT_SECRET</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;client_id&gt;</span></code>: Your Carina OAuth Application Id. Defaults to the value found in the <code class="docutils literal"><span class="pre">&lt;client_id_env&gt;</span></code> environment variable.
+For example, you may load this from a config file. <em>Do NOT hard code this values and check it in!</em></li>
+<li><code class="docutils literal"><span class="pre">&lt;client_secret&gt;</span></code>: Your Carina OAuth Secret. Defaults to the value found in the <code class="docutils literal"><span class="pre">&lt;client_secret_env&gt;</span></code> environment variable.
+For example, you may load this from a config file. <em>Do NOT hard code this values and check it in!</em></li>
+</ul>
+<p>Below is an example configuration file with all required and optional values specified:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+
+<span class="c1"># Required: Configure JupyterHub to authenticate against Carina</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">authenticator_class</span> <span class="o">=</span> <span class="s2">&quot;jupyterhub_carina.CarinaAuthenticator&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">admin_users</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;carina_username&gt;&quot;</span><span class="p">]</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">oauth_callback_url</span> <span class="o">=</span> <span class="s2">&quot;https://&lt;jupyterhub_domain&gt;/hub/oauth_callback&quot;</span>
+
+<span class="c1"># Required: Configure JupyterHub to spawn user servers on Carina</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">hub_ip</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.0&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">spawner_class</span> <span class="o">=</span> <span class="s2">&quot;jupyterhub_carina.CarinaSpawner&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaSpawner</span><span class="o">.</span><span class="n">hub_ip_connect</span> <span class="o">=</span> <span class="s2">&quot;&lt;jupyterhub_domain&gt;&quot;</span>
+
+<span class="c1"># Optional: Tweak how the CarinaSpawner creates the user&#39;s Carina cluster and container</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaSpawner</span><span class="o">.</span><span class="n">cluster_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;cluster_name&gt;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaSpawner</span><span class="o">.</span><span class="n">container_prefix</span> <span class="o">=</span> <span class="s2">&quot;&lt;container_prefix&gt;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaSpawner</span><span class="o">.</span><span class="n">container_image</span> <span class="o">=</span> <span class="s2">&quot;&lt;container_image&gt;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaSpawner</span><span class="o">.</span><span class="n">cluster_polling_interval</span> <span class="o">=</span> <span class="s2">&quot;&lt;cluster_polling_interval&gt;&quot;</span>
+
+<span class="c1"># Optional: Tweak where your Carina OAuth application&#39;s credentials are located</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">client_id_env</span> <span class="o">=</span> <span class="s2">&quot;&lt;client_id_env&gt;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">client_secret_env</span> <span class="o">=</span> <span class="s2">&quot;&lt;client_secret_env&gt;&quot;</span>
+
+<span class="c1"># Optional: Directly specify your Carina OAuth application&#39;s credentials</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;&lt;client_id&gt;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">CarinaAuthenticator</span><span class="o">.</span><span class="n">client_secret</span> <span class="o">=</span> <span class="s2">&quot;&lt;client_secret&gt;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

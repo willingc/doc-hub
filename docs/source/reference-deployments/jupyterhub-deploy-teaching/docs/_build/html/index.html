@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>JupyterHub for Teaching &mdash; JupyterHub for Teaching 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/yeti/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="JupyterHub for Teaching 1.0 documentation" href="#" />
+    <link rel="next" title="Design goals" href="design.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        JupyterHub for Teaching</a>
+      <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+          
+          
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+        
+          
+            <ul class='nav navbar-nav navbar-right'>
+                
+  <li>
+    <a href="design.html" title="Next Chapter: Design goals"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Design goals &raquo;</span>
+    </a>
+  </li>
+            </ul>
+          
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-9 content">
+      
+  <div class="section" id="jupyterhub-for-teaching">
+<h1>JupyterHub for Teaching<a class="headerlink" href="#jupyterhub-for-teaching" title="Permalink to this headline">¶</a></h1>
+<p>Version: 1.0</p>
+<p>Date: April 18, 2016</p>
+<div class="section" id="abstract">
+<span id="abstract-teaching"></span><h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>This deployment is designed for teaching a small to medium
+group of trusted users.</p>
+<p>As a simple, reusable JupyterHub deployment for your reference, this
+repository enables installation and deployment of JupyterHub and nbgrader
+on a single server. The reference deployment follows best practices and
+has been used by Professor Brian Granger when teaching &#8220;Introduction to
+Data Science&#8221;.</p>
+</div>
+<div class="section" id="contents">
+<span id="content"></span><h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design goals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design.html#instructors-and-maintainers">Instructors and maintainers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#students">Students</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#create-the-hosts-group">Create the hosts group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#secure-your-deployment">Secure your deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#deploy-with-ansible">Deploy with Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#verify-your-deployment">Verify your deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure-nbgrader.html">Configuring nbgrader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure-nbgrader.html#configuring-the-extension">Configuring the extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-nbgrader.html#deploy-formgrade">Deploy formgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-nbgrader.html#configuration-notes">Configuration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-nbgrader.html#troubleshooting-saving-and-restoring-users">Troubleshooting: Saving and restoring users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="use-nbgrader.html">Using nbgrader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="use-nbgrader.html#preparing-class-assignments-instructor">Preparing class assignments - Instructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nbgrader.html#working-with-an-assignment-students">Working with an assignment - Students</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nbgrader.html#grading-the-assignments-instructor">Grading the assignments - Instructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nbgrader.html#next-steps">Next steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgment</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Project Jupyter.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

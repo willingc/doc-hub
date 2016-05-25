@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>configurable-http-proxy &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>configurable-http-proxy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/configurable-http-proxy/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configurable-http-proxy">
+<span id="configurable-http-proxy"></span><h1>configurable-http-proxy<a class="headerlink" href="#configurable-http-proxy" title="Permalink to this headline">¶</a></h1>
+<p>A simple wrapper around <a class="reference external" href="https://github.com/nodejitsu/node-http-proxy">node-http-proxy</a> that adds a REST API for updating the routing table.</p>
+<p>The proxy is developed as a part of the <a class="reference external" href="https://github.com/jupyter/jupyterhub">Jupyter Hub</a> multi-user server.</p>
+<div class="section" id="install">
+<span id="install"></span><h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>To install <code class="docutils literal"><span class="pre">configurable-http-proxy</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">configurable</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="n">proxy</span>
+</pre></div>
+</div>
+<p>To install from the repo:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jupyter</span><span class="o">/</span><span class="n">configurable</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="n">proxy</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">configurable</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="n">proxy</span>
+<span class="c1"># Use -g for global install</span>
+<span class="n">npm</span> <span class="n">install</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-configurable-http-proxy">
+<span id="using-configurable-http-proxy"></span><h2>Using configurable-http-proxy<a class="headerlink" href="#using-configurable-http-proxy" title="Permalink to this headline">¶</a></h2>
+<p>the configurable proxy runs two HTTP(S) servers:</p>
+<ol class="simple">
+<li>The public-facing interface to your application (controlled by <code class="docutils literal"><span class="pre">--ip</span></code>, <code class="docutils literal"><span class="pre">--port</span></code>, etc.).
+This listens on <strong>all interfaces</strong> by default.</li>
+<li>The inward-facing REST API (<code class="docutils literal"><span class="pre">--api-ip</span></code>, <code class="docutils literal"><span class="pre">--api-port</span></code>). This listens on localhost by default.
+The REST API uses token authorization, set by the <code class="docutils literal"><span class="pre">CONFIGPROXY_AUTH_TOKEN</span></code> environment variable.</li>
+</ol>
+<p>When you start the proxy, you can set a default target to be used when no match is found
+in the proxy table:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ configurable-http-proxy --default-target=http://localhost:8888
+</pre></div>
+</div>
+<div class="section" id="options">
+<span id="options"></span><h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  Usage: configurable-http-proxy [options]
+
+  Options:
+
+    -h, --help                       output usage information
+    -V, --version                    output the version number
+    --ip &lt;ip-address&gt;                Public-facing IP of the proxy
+    --port &lt;n&gt;                       Public-facing port of the proxy
+    --ssl-key &lt;keyfile&gt;              SSL key to use, if any
+    --ssl-cert &lt;certfile&gt;            SSL certificate to use, if any
+    --ssl-ca &lt;ca-file&gt;               SSL certificate authority, if any
+    --ssl-request-cert               Request SSL certs to authenticate clients
+    --ssl-reject-unauthorized        Reject unauthorized SSL connections (only meaningful if --ssl-request-cert is given)
+    --ssl-ciphers &lt;ciphers&gt;          `:`-separated ssl cipher list. Default excludes RC4
+    --ssl-allow-rc4                  Allow RC4 cipher for SSL (disabled by default)
+    --ssl-dhparam &lt;dhparam-file&gt;     SSL Diffie-Helman Parameters pem file, if any
+    --api-ip &lt;ip&gt;                    Inward-facing IP for API requests
+    --api-port &lt;n&gt;                   Inward-facing port for API requests
+    --api-ssl-key &lt;keyfile&gt;          SSL key to use, if any, for API requests
+    --api-ssl-cert &lt;certfile&gt;        SSL certificate to use, if any, for API requests
+    --api-ssl-ca &lt;ca-file&gt;           SSL certificate authority, if any, for API requests
+    --api-ssl-request-cert           Request SSL certs to authenticate clients for API requests
+    --api-ssl-reject-unauthorized    Reject unauthorized SSL connections (only meaningful if --api-ssl-request-cert is given)
+    --default-target &lt;host&gt;          Default proxy target (proto://host[:port])
+    --error-target &lt;host&gt;            Alternate server for handling proxy errors (proto://host[:port])
+    --error-path &lt;path&gt;              Alternate server for handling proxy errors (proto://host[:port])
+    --redirect-port &lt;redirect-port&gt;  Redirect HTTP requests on this port to the server on HTTPS
+    --no-x-forward                   Don&#39;t add &#39;X-forward-&#39; headers to proxied requests
+    --no-prepend-path                Avoid prepending target paths to proxied requests
+    --no-include-prefix              Don&#39;t include the routing prefix in proxied requests
+    --insecure                       Disable SSL cert verification
+    --host-routing                   Use host routing (host as first level of path)
+    --log-level &lt;loglevel&gt;           Log level (debug, info, warn, error)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rest-api">
+<span id="rest-api"></span><h2>REST API<a class="headerlink" href="#rest-api" title="Permalink to this headline">¶</a></h2>
+<p>The REST API is authenticated via a token in the <code class="docutils literal"><span class="pre">Authorization</span></code> header.
+The API is served under the <code class="docutils literal"><span class="pre">/api/routes</span></code> base URL.
+For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$&gt; curl -H &quot;Authorization: token $CONFIGPROXY_AUTH_TOKEN&quot; http://localhost:8001/api/routes
+</pre></div>
+</div>
+<div class="section" id="getting-the-current-routing-table">
+<span id="getting-the-current-routing-table"></span><h3>Getting the current routing table<a class="headerlink" href="#getting-the-current-routing-table" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span>GET /api/routes[?inactive_since=ISO8601-timestamp]
+</pre></div>
+</div>
+<p>Returns a JSON dictionary of the current routing table. This <em>excludes</em> the default route.
+If the <code class="docutils literal"><span class="pre">inactive_since</span></code> URL parameter is given as an <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> timestamp,
+only routes whose <code class="docutils literal"><span class="pre">last_activity</span></code> is earlier than the timestamp will be returned.</p>
+<div class="section" id="response">
+<span id="response"></span><h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:</span> <span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;/user/foo&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8002&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last_activity&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-09-08T19:43:08.321Z&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;/user/bar&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8003&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last_activity&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-09-08T19:40:17.819Z&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">last_activity</span></code> timestamp is updated whenever the proxy passes any data to or from
+the proxy target.</p>
+</div>
+</div>
+<div class="section" id="adding-new-routes">
+<span id="adding-new-routes"></span><h3>Adding new routes<a class="headerlink" href="#adding-new-routes" title="Permalink to this headline">¶</a></h3>
+<p>POST requests create new routes. The body of the request should be a JSON dictionary
+with at least one key: <code class="docutils literal"><span class="pre">target</span></code>, the host to be proxied.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">routes</span><span class="o">/</span><span class="p">[:</span><span class="n">path</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="input">
+<span id="input"></span><h4>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h4>
+<dl>
+    <dt>target</dt>
+    <dd>The host URL</dd>
+</dl></div>
+<div class="section" id="response">
+<span id="id1"></span><h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:</span> <span class="mi">201</span> <span class="n">Created</span>
+</pre></div>
+</div>
+<p>Any request to <code class="docutils literal"><span class="pre">/path/prefix</span></code> on the proxy&#8217;s public interface will be proxied to <code class="docutils literal"><span class="pre">target</span></code>.</p>
+</div>
+</div>
+<div class="section" id="deleting-routes">
+<span id="deleting-routes"></span><h3>Deleting routes<a class="headerlink" href="#deleting-routes" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">routes</span><span class="o">/</span><span class="p">[:</span><span class="n">path</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="response">
+<span id="id2"></span><h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:</span> <span class="mi">204</span> <span class="n">No</span> <span class="n">Content</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="custom-error-pages">
+<span id="custom-error-pages"></span><h2>Custom error pages<a class="headerlink" href="#custom-error-pages" title="Permalink to this headline">¶</a></h2>
+<p>CHP 0.5 adds two ways to provide custom error pages when the proxy encounters an error,
+and has no proxy target to handle a request. There are two typical errors that CHP can hit:</p>
+<ul class="simple">
+<li>404: a client has requested a URL for which there is no routing target.
+This is impossible if a default target has been specified.</li>
+<li>503: a route exists, but the upstream server isn&#8217;t responding.
+This is more common, and can be due to any number of reasons,
+including the target service having died or not finished starting.</li>
+</ul>
+<div class="section" id="error-path">
+<span id="error-path"></span><h3>error-path<a class="headerlink" href="#error-path" title="Permalink to this headline">¶</a></h3>
+<p>If you specify <code class="docutils literal"><span class="pre">--error-path</span> <span class="pre">/usr/share/chp-errors</span></code>,
+then when a proxy error occurs, CHP will look in <code class="docutils literal"><span class="pre">/usr/share/chp-errors/CODE.html</span></code> for an html page to serve,
+e.g. <code class="docutils literal"><span class="pre">404.html</span></code> or <code class="docutils literal"><span class="pre">503.html</span></code>.
+If no file exists for the error code,  <code class="docutils literal"><span class="pre">error.html</span></code> file will be used.
+If you use this scheme, make sure you have at least <code class="docutils literal"><span class="pre">error.html</span></code>.</p>
+</div>
+<div class="section" id="error-target">
+<span id="error-target"></span><h3>error-target<a class="headerlink" href="#error-target" title="Permalink to this headline">¶</a></h3>
+<p>If you specify <code class="docutils literal"><span class="pre">--error-target</span> <span class="pre">http://localhost:1234</span></code>,
+then when the proxy encounters an error, it will make a GET request to this server, with URL <code class="docutils literal"><span class="pre">/CODE</span></code>,
+and the URL of the failing request escaped in a URL parameter, e.g.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>GET /404?url=%2Fescaped%2Fpath
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="host-based-routing">
+<span id="host-based-routing"></span><h2>Host-based routing<a class="headerlink" href="#host-based-routing" title="Permalink to this headline">¶</a></h2>
+<p>If <code class="docutils literal"><span class="pre">--host-routing</span></code> is given, the proxy will pick a target based on the host of the incoming request,
+instead of the URL prefix.
+The API when using host-based routes is the same as if the hostname were the first part of the URL path, e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;/example.com&quot;</span><span class="p">:</span> <span class="s2">&quot;https://localhost:1234&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;/otherdomain.biz&quot;</span><span class="p">:</span> <span class="s2">&quot;http://10.0.1.4:5555&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>etc.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

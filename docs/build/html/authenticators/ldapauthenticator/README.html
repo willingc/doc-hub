@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ldapauthenticator &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>ldapauthenticator</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/authenticators/ldapauthenticator/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ldapauthenticator">
+<span id="ldapauthenticator"></span><h1>ldapauthenticator<a class="headerlink" href="#ldapauthenticator" title="Permalink to this headline">¶</a></h1>
+<p>Simple LDAP Authenticator Plugin for JupyterHub</p>
+<div class="section" id="installation">
+<span id="installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>You can install it from pip with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyterhub</span><span class="o">-</span><span class="n">ldapauthenticator</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requirements">
+<span id="requirements"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>I&#8217;ve only tested with python3 - anyone willing to test with python2
+is welcome to do so! There&#8217;s no reason it shouldn&#8217;t work.</p>
+</div>
+<div class="section" id="usage">
+<span id="usage"></span><h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>You can enable this authenticator with the folling lines in your
+<code class="docutils literal"><span class="pre">jupyter_config.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">authenticator_class</span> <span class="o">=</span> <span class="s1">&#39;ldapauthenticator.LDAPAuthenticator&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="required-configuration">
+<span id="required-configuration"></span><h3>Required configuration<a class="headerlink" href="#required-configuration" title="Permalink to this headline">¶</a></h3>
+<p>At least the following two configuration options must be set before
+the LDAP Authenticator can be used:</p>
+<div class="section" id="ldapauthenticator-server-address">
+<span id="ldapauthenticator-server-address"></span><h4><code class="docutils literal"><span class="pre">LDAPAuthenticator.server_address</span></code><a class="headerlink" href="#ldapauthenticator-server-address" title="Permalink to this headline">¶</a></h4>
+<p>Address of the LDAP Server to contact. Just use a bare hostname or IP,
+without a port name or protocol prefix.</p>
+</div>
+<div class="section" id="ldapauthenticator-bind-dn-template">
+<span id="ldapauthenticator-bind-dn-template"></span><h4><code class="docutils literal"><span class="pre">LDAPAuthenticator.bind_dn_template</span></code><a class="headerlink" href="#ldapauthenticator-bind-dn-template" title="Permalink to this headline">¶</a></h4>
+<p>Template to use to generate the full dn for a user from the human readable
+username. For example, if users in your LDAP database have DN of the form
+<code class="docutils literal"><span class="pre">uid=Yuvipanda,ou=people,dc=wikimedia,dc=org</span></code> where Yuvipanda is the username,
+you would set this config item to be:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">LDAPAuthenticator</span><span class="o">.</span><span class="n">bind_dn_template</span> <span class="o">=</span> <span class="s1">&#39;uid=</span><span class="si">{username}</span><span class="s1">,ou=people,dc=wikimedia,dc=org&#39;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">{username}</span></code> is expanded into the username the user provides.</p>
+</div>
+</div>
+<div class="section" id="optional-configuration">
+<span id="optional-configuration"></span><h3>Optional configuration<a class="headerlink" href="#optional-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ldapauthenticator-allowed-groups">
+<span id="ldapauthenticator-allowed-groups"></span><h4><code class="docutils literal"><span class="pre">LDAPAuthenticator.allowed_groups</span></code><a class="headerlink" href="#ldapauthenticator-allowed-groups" title="Permalink to this headline">¶</a></h4>
+<p>LDAP groups whose members are allowed to log in. This must be
+set to either empty <code class="docutils literal"><span class="pre">[]</span></code> (the default, to disable) or to a list of
+full DNs that have a <code class="docutils literal"><span class="pre">member</span></code> attribute that includes the current
+user attempting to log in.</p>
+<p>As an example, to restrict access only to people in groups
+<code class="docutils literal"><span class="pre">researcher</span></code> or <code class="docutils literal"><span class="pre">operations</span></code>,</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">LDAPAuthenticator</span><span class="o">.</span><span class="n">allowed_groups</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;cn=researcher,ou=groups,dc=wikimedia,dc=org&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cn=operations,ou=groups,dc=wikimedia,dc=org&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ldapauthenticator-valid-username-regex">
+<span id="ldapauthenticator-valid-username-regex"></span><h4><code class="docutils literal"><span class="pre">LDAPAuthenticator.valid_username_regex</span></code><a class="headerlink" href="#ldapauthenticator-valid-username-regex" title="Permalink to this headline">¶</a></h4>
+<p>All usernames will be checked against this before being sent
+to LDAP. This acts as both an easy way to filter out invalid
+usernames as well as protection against LDAP injection attacks.</p>
+<p>By default it looks for the regex <code class="docutils literal"><span class="pre">^[a-z][.a-z0-9_-]*$</span></code> which
+is what most shell username validators do.</p>
+</div>
+<div class="section" id="ldapauthenticator-use-ssl">
+<span id="ldapauthenticator-use-ssl"></span><h4><code class="docutils literal"><span class="pre">LDAPAuthenticator.use_ssl</span></code><a class="headerlink" href="#ldapauthenticator-use-ssl" title="Permalink to this headline">¶</a></h4>
+<p>Boolean to specify whether to use SSL encryption when contacting
+the LDAP server. Highly recommended that this be left to <code class="docutils literal"><span class="pre">True</span></code>
+(the default) unless there are very good reasons otherwise.</p>
+</div>
+<div class="section" id="ldapauthenticator-server-port">
+<span id="ldapauthenticator-server-port"></span><h4><code class="docutils literal"><span class="pre">LDAPAuthenticator.server_port</span></code><a class="headerlink" href="#ldapauthenticator-server-port" title="Permalink to this headline">¶</a></h4>
+<p>Port to use to contact the LDAP server. Defaults to 389 if no SSL
+is being used, and 636 is SSL is being used.</p>
+</div>
+</div>
+</div>
+<div class="section" id="compatibility">
+<span id="compatibility"></span><h2>Compatibility<a class="headerlink" href="#compatibility" title="Permalink to this headline">¶</a></h2>
+<p>This has been tested against an OpenLDAP server, with the client
+running Python 3.4. Verifications of this code workign well with
+other LDAP setups welcome, as are bug reports and patches to make
+it work with other LDAP setups!</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

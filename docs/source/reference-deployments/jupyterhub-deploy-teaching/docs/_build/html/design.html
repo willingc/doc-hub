@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Design goals &mdash; JupyterHub for Teaching 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/yeti/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="JupyterHub for Teaching 1.0 documentation" href="index.html" />
+    <link rel="next" title="Installation Guide" href="installation.html" />
+    <link rel="prev" title="JupyterHub for Teaching" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        JupyterHub for Teaching</a>
+      <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+          
+          
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+        
+          
+            <ul class='nav navbar-nav navbar-right'>
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: JupyterHub for Teaching"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; JupyterHub for Teaching</span>
+    </a>
+  </li>
+  <li>
+    <a href="installation.html" title="Next Chapter: Installation Guide"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Installation Guide &raquo;</span>
+    </a>
+  </li>
+            </ul>
+          
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-9 content">
+      
+  <div class="section" id="design-goals">
+<h1>Design goals<a class="headerlink" href="#design-goals" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="instructors-and-maintainers">
+<h2>Instructors and maintainers<a class="headerlink" href="#instructors-and-maintainers" title="Permalink to this headline">¶</a></h2>
+<p>When using this repository to deploy JupyterHub and nbgrader, individuals
+should be able to have a deployment that is as simple as possible:</p>
+<ul class="simple">
+<li>No Docker use.</li>
+<li><a class="reference external" href="https://www.nginx.com">NGINX</a> as a frontend proxy, serving static
+assets, and a termination point for SSL/TLS.</li>
+<li>A single server.</li>
+<li><a class="reference external" href="https://www.ansible.com/resources">Ansible</a> for configuration.</li>
+<li>Optionally, use <a class="reference external" href="https://letsencrypt.org/">Let&#8217;s Encrypt</a>  for
+generating SSL certificates.</li>
+</ul>
+<div class="section" id="jupyterhub">
+<h3>JupyterHub<a class="headerlink" href="#jupyterhub" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Start from:<ul>
+<li>An empty Ubuntu latest stable server with SSH key based access.</li>
+<li>A valid DNS name.</li>
+<li>A formatted and mounted directory to use for user home directories.</li>
+<li>The assumption that all users of the system will be &#8220;trusted,&#8221; meaning
+that you would given them a user-level shell account on the server.</li>
+</ul>
+</li>
+<li>Always have SSL/TLS enabled.</li>
+<li>Specify local drives to be mounted.</li>
+<li>Manage the running of jupyterhub and nbgrader using supervisor.</li>
+<li>Optionally, monitor the state of the server and set email alerts using
+<a class="reference external" href="http://newrelic.com/">NewRelic</a>. The built-in monitoring of your cloud
+provider may also be used.</li>
+<li>Specify admin users of JupyterHub.</li>
+<li>Add the public SSH keys of GitHub users who need to be able to <code class="docutils literal"><span class="pre">ssh</span></code> to
+the server as <code class="docutils literal"><span class="pre">root</span></code> for administration.</li>
+<li>Manage users and authentication using either:<ul>
+<li>Regular Unix users and <a class="reference external" href="https://en.wikipedia.org/wiki/Linux_PAM">PAM (Pluggable authentication modules)</a></li>
+<li><a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub OAuth</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="nbgrader">
+<h3>nbgrader<a class="headerlink" href="#nbgrader" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Run nbgrader and configure:<ul>
+<li>The course name.</li>
+<li>The instructors username.</li>
+<li>Graders&#8217; usernames.</li>
+<li>The location of the nbgrader config.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="students">
+<h2>Students<a class="headerlink" href="#students" title="Permalink to this headline">¶</a></h2>
+<p>End users of this deployment should be able to:</p>
+<ul class="simple">
+<li>Use the following Jupyter kernels.<ul>
+<li><a class="reference external" href="https://docs.python.org/3/">Python version 3</a> using the IPython kernel
+with the main Python libraries for data science.</li>
+<li>Bash kernel &lt;<a class="reference external" href="https://github.com/takluyver/bash_kernel">https://github.com/takluyver/bash_kernel</a>&gt;</li>
+</ul>
+</li>
+<li>Sign in using their GitHub or Unix credentials.</li>
+<li>Have a persistent home directory.</li>
+<li>Have outbound network access.</li>
+</ul>
+<span class="target" id="let-s-encrypt-https-letsencrypt-org"></span></div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Project Jupyter.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

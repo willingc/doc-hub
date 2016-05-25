@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Let’s Encrypt &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Let&#8217;s Encrypt</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/reference-deployments/jupyterhub-deploy-docker/README_letsencrypt.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="let-s-encrypt">
+<span id="let-s-encrypt"></span><h1>Let&#8217;s Encrypt<a class="headerlink" href="#let-s-encrypt" title="Permalink to this headline">¶</a></h1>
+<p>This example includes a Docker Compose configuration file that you can use to deploy <a class="reference external" href="https://github.com/jupyter/jupyterhub">JupyterHub</a> with TLS certificate and key files generated by <a class="reference external" href="https://letsencrypt.org">Let&#8217;s Encrypt</a>.</p>
+<p>The <code class="docutils literal"><span class="pre">docker-compose.yml</span></code> configuration file in this example extends the JupyterHub service defined in the <code class="docutils literal"><span class="pre">docker-compose.yml</span></code> file in the root directory of this repository.</p>
+<p>When you run the JupyterHub Docker container using the configuration file in this directory, Docker mounts an additional volume containing the Let&#8217;s Encrypt TLS certificate and key files, and overrides the <code class="docutils literal"><span class="pre">SSL_CERT</span></code> and <code class="docutils literal"><span class="pre">SSL_KEY</span></code> environment variables to point to these files.</p>
+<div class="section" id="create-a-secrets-volume">
+<span id="create-a-secrets-volume"></span><h2>Create a secrets volume<a class="headerlink" href="#create-a-secrets-volume" title="Permalink to this headline">¶</a></h2>
+<p>This example stores the Let&#8217;s Encrypt TLS certificate and key files in a Docker volume, and mounts the volume to the JupyterHub container at runtime.</p>
+<p>Create a volume to store the certificate and key files.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Activate Docker machine where JupyterHub will run</span>
+<span class="nb">eval</span> <span class="s2">&quot;$(docker-machine env jupyterhub)&quot;</span>
+
+<span class="n">docker</span> <span class="n">volume</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">jupyterhub</span><span class="o">-</span><span class="n">secrets</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-let-s-encrypt-certificate-and-key">
+<span id="generate-let-s-encrypt-certificate-and-key"></span><h2>Generate Let&#8217;s Encrypt certificate and key<a class="headerlink" href="#generate-let-s-encrypt-certificate-and-key" title="Permalink to this headline">¶</a></h2>
+<p>Run the <code class="docutils literal"><span class="pre">letsencrypt.sh</span></code> script to create a TLS full-chain certificate and key.</p>
+<p>The script downloads and runs the <code class="docutils literal"><span class="pre">letsencrypt</span></code> Docker image to create a full-chain certificate and private key, and stores the files in a Docker volume.  You must provide a valid, routable, fully-qualified domain name (you must own it), and you must activate the Docker machine host that the domain points to before you run this script.  You must also provide a valid email address and the name of the volume you created above.</p>
+<p><em>Notes:</em> The script hard codes several <code class="docutils literal"><span class="pre">letsencrypt</span></code> options, one of which automatically agrees to the Let&#8217;s Encrypt Terms of Service.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Activate Docker machine where JupyterHub will run</span>
+<span class="nb">eval</span> <span class="s2">&quot;$(docker-machine env jupyterhub)&quot;</span>
+
+<span class="o">./</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">sh</span> \
+  <span class="o">--</span><span class="n">domain</span> <span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span> \
+  <span class="o">--</span><span class="n">email</span> <span class="n">me</span><span class="nd">@mydomain</span> \
+  <span class="o">--</span><span class="n">volume</span> <span class="n">jupyterhub</span><span class="o">-</span><span class="n">secrets</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-jupyterhub-container">
+<span id="run-jupyterhub-container"></span><h2>Run JupyterHub container<a class="headerlink" href="#run-jupyterhub-container" title="Permalink to this headline">¶</a></h2>
+<p>To run the JupyterHub container using the configuration in this directory, run the <code class="docutils literal"><span class="pre">hub.sh</span></code> script <strong>from the root directory</strong> of this repository and specify the <code class="docutils literal"><span class="pre">docker-compose.yml</span></code> file in this directory.   Set the <code class="docutils literal"><span class="pre">SECRETS_VOLUME</span></code> environment variable to the name of the Docker volume containing the TLS certificate and key files.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SECRETS_VOLUME</span><span class="o">=</span><span class="n">jupyterhub</span><span class="o">-</span><span class="n">secrets</span> \
+  <span class="o">./</span><span class="n">hub</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">f</span> <span class="n">examples</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

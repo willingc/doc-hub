@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Users &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="The JupyterHub API" href="index.html"/>
+        <link rel="next" title="Summary of changes in JupyterHub" href="../changelog.html"/>
+        <link rel="prev" title="Spawners" href="spawner.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The JupyterHub API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authenticators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spawner.html">Spawners</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-jupyterhub.user">Module: <code class="docutils literal"><span class="pre">jupyterhub.user</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#user"><code class="docutils literal"><span class="pre">User</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">The JupyterHub API</a> &raquo;</li>
+      
+    <li>Users</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/user.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="users">
+<h1>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-jupyterhub.user">
+<span id="module-jupyterhub-user"></span><h2>Module: <a class="reference internal" href="#module-jupyterhub.user" title="jupyterhub.user"><code class="xref py py-mod docutils literal"><span class="pre">jupyterhub.user</span></code></a><a class="headerlink" href="#module-jupyterhub.user" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="user">
+<h3><a class="reference internal" href="#jupyterhub.user.User" title="jupyterhub.user.User"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a><a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="jupyterhub.user.Server">
+<em class="property">class </em><code class="descclassname">jupyterhub.user.</code><code class="descname">Server</code><a class="headerlink" href="#jupyterhub.user.Server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="jupyterhub.user.User">
+<em class="property">class </em><code class="descclassname">jupyterhub.user.</code><code class="descname">User</code><span class="sig-paren">(</span><em>orm_user</em>, <em>settings</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.user.User" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="jupyterhub.user.User.name">
+<code class="descname">name</code><a class="headerlink" href="#jupyterhub.user.User.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user&#8217;s name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="jupyterhub.user.User.server">
+<code class="descname">server</code><a class="headerlink" href="#jupyterhub.user.User.server" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user&#8217;s Server data object if running, None otherwise.
+Has <code class="docutils literal"><span class="pre">ip</span></code>, <code class="docutils literal"><span class="pre">port</span></code> attributes.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="jupyterhub.user.User.spawner">
+<code class="descname">spawner</code><a class="headerlink" href="#jupyterhub.user.User.spawner" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user&#8217;s <a class="reference internal" href="spawner.html#jupyterhub.spawner.Spawner" title="jupyterhub.spawner.Spawner"><code class="xref py py-class docutils literal"><span class="pre">Spawner</span></code></a> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="jupyterhub.user.User.escaped_name">
+<code class="descname">escaped_name</code><a class="headerlink" href="#jupyterhub.user.User.escaped_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>My name, escaped for use in URLs, cookies, etc.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../changelog.html" class="btn btn-neutral float-right" title="Summary of changes in JupyterHub" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="spawner.html" class="btn btn-neutral" title="Spawners" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

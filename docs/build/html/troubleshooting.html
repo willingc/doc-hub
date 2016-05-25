@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Troubleshooting &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="index.html"/>
+        <link rel="next" title="The JupyterHub API" href="api/index.html"/>
+        <link rel="prev" title="Writing a custom Spawner" href="spawners.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#behavior-problems">Behavior problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#errors">Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i">How do I...?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyterhub-proxy-fails-to-start">JupyterHub proxy fails to start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-after-spawning-my-single-user-server">500 error after spawning my single-user server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#symptoms">Symptoms:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causes-and-resolutions">Causes and resolutions:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#no-authorization-request">No authorization request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-hub-api-authorizations-cookie">403 GET /hub/api/authorizations/cookie</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#chained-certificates-for-ssl">Chained certificates for SSL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/troubleshooting.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="troubleshooting">
+<span id="troubleshooting"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>This document is under active development.</p>
+<p>When troubleshooting, you may see unexpected behaviors or receive an error
+message. These two lists provide links to identifying the cause of the
+problem and how to resolve it.</p>
+<div class="section" id="behavior-problems">
+<span id="behavior-problems"></span><h2>Behavior problems<a class="headerlink" href="#behavior-problems" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#jupyterhub-proxy-fails-to-start">JupyterHub proxy fails to start</a></li>
+</ul>
+</div>
+<div class="section" id="errors">
+<span id="errors"></span><h2>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#500-error-after-spawning-my-single-user-server">500 error after spawning a single-user server</a></li>
+</ul>
+</div>
+<div class="section" id="how-do-i">
+<span id="how-do-i"></span><h2>How do I...?<a class="headerlink" href="#how-do-i" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#chained-certificates-for-ssl">Use a chained certificate for SSL</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="jupyterhub-proxy-fails-to-start">
+<span id="jupyterhub-proxy-fails-to-start"></span><h2>JupyterHub proxy fails to start<a class="headerlink" href="#jupyterhub-proxy-fails-to-start" title="Permalink to this headline">¶</a></h2>
+<p>If you have tried to start the JupyterHub proxy and it fails to start:</p>
+<ul class="simple">
+<li>check if the JupyterHub IP configuration setting is
+<code class="docutils literal"><span class="pre">c.JupyterHub.ip</span> <span class="pre">=</span> <span class="pre">'*'</span></code>; if it is, try <code class="docutils literal"><span class="pre">c.JupyterHub.ip</span> <span class="pre">=</span> <span class="pre">''</span></code></li>
+<li>Try starting with <code class="docutils literal"><span class="pre">jupyterhub</span> <span class="pre">--ip=0.0.0.0</span></code></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="error-after-spawning-my-single-user-server">
+<span id="error-after-spawning-my-single-user-server"></span><h2>500 error after spawning my single-user server<a class="headerlink" href="#error-after-spawning-my-single-user-server" title="Permalink to this headline">¶</a></h2>
+<p>You receive a 500 error when accessing the URL <code class="docutils literal"><span class="pre">/user/you/...</span></code>. This is often
+seen when your single-user server cannot check your cookies with the Hub.</p>
+<p>There are two likely reasons for this:</p>
+<ol class="simple">
+<li>The single-user server cannot connect to the Hub&#8217;s API (networking
+configuration problems)</li>
+<li>The single-user server cannot <em>authenticate</em> its requests (invalid token)</li>
+</ol>
+<div class="section" id="symptoms">
+<span id="symptoms"></span><h3>Symptoms:<a class="headerlink" href="#symptoms" title="Permalink to this headline">¶</a></h3>
+<p>The main symptom is a failure to load <em>any</em> page served by the single-user
+server, met with a 500 error. This is typically the first page at <code class="docutils literal"><span class="pre">/user/you</span></code>
+after logging in or clicking &#8220;Start my server&#8221;. When a single-user server
+receives a request, it makes an API request to the Hub to check if the cookie
+corresponds to the right user. This request is logged.</p>
+<p>If everything is working, it will look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">GET</span> <span class="o">/</span><span class="n">hub</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">authorizations</span><span class="o">/</span><span class="n">cookie</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">hub</span><span class="o">-</span><span class="n">token</span><span class="o">-</span><span class="n">name</span><span class="o">/</span><span class="p">[</span><span class="n">secret</span><span class="p">]</span> <span class="p">(</span><span class="nd">@10</span><span class="o">.</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">4</span><span class="p">)</span> <span class="mf">6.10</span><span class="n">ms</span>
+</pre></div>
+</div>
+<p>You should see a similar 200 message, as above, in the Hub log when you first
+visit your single-user server. If you don&#8217;t see this message in the log, it
+may mean that your single-user server isn&#8217;t connecting to your Hub.</p>
+<p>If you see 403 (forbidden) like this, it&#8217;s a token problem:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">403</span> <span class="n">GET</span> <span class="o">/</span><span class="n">hub</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">authorizations</span><span class="o">/</span><span class="n">cookie</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">hub</span><span class="o">-</span><span class="n">token</span><span class="o">-</span><span class="n">name</span><span class="o">/</span><span class="p">[</span><span class="n">secret</span><span class="p">]</span> <span class="p">(</span><span class="nd">@10</span><span class="o">.</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">4</span><span class="p">)</span> <span class="mf">4.14</span><span class="n">ms</span>
+</pre></div>
+</div>
+<p>Check the logs of the single-user server, which may have more detailed
+information on the cause.</p>
+</div>
+<div class="section" id="causes-and-resolutions">
+<span id="causes-and-resolutions"></span><h3>Causes and resolutions:<a class="headerlink" href="#causes-and-resolutions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="no-authorization-request">
+<span id="no-authorization-request"></span><h4>No authorization request<a class="headerlink" href="#no-authorization-request" title="Permalink to this headline">¶</a></h4>
+<p>If you make an API request and it is not received by the server, you likely
+have a network configuration issue. Often, this happens when the Hub is only
+listening on 127.0.0.1 (default) and the single-user servers are not on the
+same &#8216;machine&#8217; (can be physically remote, or in a docker container or VM). The
+fix for this case is to make sure that <code class="docutils literal"><span class="pre">c.JupyterHub.hub_ip</span></code> is an address
+that all single-user servers can connect to, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">hub_ip</span> <span class="o">=</span> <span class="s1">&#39;10.0.0.1&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-hub-api-authorizations-cookie">
+<span id="get-hub-api-authorizations-cookie"></span><h4>403 GET /hub/api/authorizations/cookie<a class="headerlink" href="#get-hub-api-authorizations-cookie" title="Permalink to this headline">¶</a></h4>
+<p>If you receive a 403 error, the API token for the single-user server is likely
+invalid. Commonly, the 403 error is caused by resetting the JupyterHub
+database (either removing jupyterhub.sqlite or some other action) while
+leaving single-user servers running. This happens most frequently when using
+DockerSpawner, because Docker&#8217;s default behavior is to stop/start containers
+which resets the JupyterHub database, rather than destroying and recreating
+the container every time. This means that the same API token is used by the
+server for its whole life, until the container is rebuilt.</p>
+<p>The fix for this Docker case is to remove any Docker containers seeing this
+issue (typicaly all containers created before a certain point in time):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="n">jupyter</span><span class="o">-</span><span class="n">name</span>
+</pre></div>
+</div>
+<p>After this, when you start your server via JupyterHub, it will build a
+new container. If this was the underlying cause of the issue, you should see
+your server again.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="chained-certificates-for-ssl">
+<span id="chained-certificates-for-ssl"></span><h3>Chained certificates for SSL<a class="headerlink" href="#chained-certificates-for-ssl" title="Permalink to this headline">¶</a></h3>
+<p>Some certificate providers, i.e. Entrust, may provide you with a chained
+certificate that contains multiple files. If you are using a chained
+certificate you will need to concatenate the individual files by appending the
+chain cert and root cert to your host cert:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">your_host</span><span class="o">.</span><span class="n">crt</span> <span class="n">chain</span><span class="o">.</span><span class="n">crt</span> <span class="n">root</span><span class="o">.</span><span class="n">crt</span> <span class="o">&gt;</span> <span class="n">your_host</span><span class="o">-</span><span class="n">chained</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+<p>You would then set in your <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code> file the <code class="docutils literal"><span class="pre">ssl_key</span></code> and
+<code class="docutils literal"><span class="pre">ssl_cert</span></code> as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_cert</span> <span class="o">=</span> <span class="n">your_host</span><span class="o">-</span><span class="n">chained</span><span class="o">.</span><span class="n">crt</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_key</span> <span class="o">=</span> <span class="n">your_host</span><span class="o">.</span><span class="n">key</span>
+</pre></div>
+</div>
+<div class="section" id="example">
+<span id="example"></span><h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>Your certificate provider gives you the following files: <code class="docutils literal"><span class="pre">example_host.crt</span></code>,
+<code class="docutils literal"><span class="pre">Entrust_L1Kroot.txt</span></code> and <code class="docutils literal"><span class="pre">Entrust_Root.txt</span></code>.</p>
+<p>Concatenate the files appending the chain cert and root cert to your host cert:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">example_host</span><span class="o">.</span><span class="n">crt</span> <span class="n">Entrust_L1Kroot</span><span class="o">.</span><span class="n">txt</span> <span class="n">Entrust_Root</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">example_host</span><span class="o">-</span><span class="n">chained</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+<p>You would then use the <code class="docutils literal"><span class="pre">example_host-chained.crt</span></code> as the value for
+JupyterHub&#8217;s <code class="docutils literal"><span class="pre">ssl_cert</span></code>. You may pass this value as a command line option
+when starting JupyterHub or more conveniently set the <code class="docutils literal"><span class="pre">ssl_cert</span></code> variable in
+JupyterHub&#8217;s configuration file, <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>. In <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code>,
+set:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_cert</span> <span class="o">=</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">example_host</span><span class="o">-</span><span class="n">chained</span><span class="o">.</span><span class="n">crt</span>
+<span class="n">c</span><span class="o">.</span><span class="n">JupyterHub</span><span class="o">.</span><span class="n">ssl_key</span> <span class="o">=</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">example_host</span><span class="o">.</span><span class="n">key</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">ssl_cert</span></code> is example-chained.crt and ssl_key to your private key.</p>
+<p>Then restart JupyterHub.</p>
+<p>See also <a class="reference external" href="getting-started.md#ssl-encryption">JupyterHub SSL encryption</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/index.html" class="btn btn-neutral float-right" title="The JupyterHub API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="spawners.html" class="btn btn-neutral" title="Writing a custom Spawner" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

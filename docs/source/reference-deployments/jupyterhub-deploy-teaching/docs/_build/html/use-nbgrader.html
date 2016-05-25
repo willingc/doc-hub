@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using nbgrader &mdash; JupyterHub for Teaching 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/yeti/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="JupyterHub for Teaching 1.0 documentation" href="index.html" />
+    <link rel="next" title="Acknowledgment" href="acknowledgment.html" />
+    <link rel="prev" title="Configuring nbgrader" href="configure-nbgrader.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        JupyterHub for Teaching</a>
+      <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+          
+          
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+        
+          
+            <ul class='nav navbar-nav navbar-right'>
+                
+  <li>
+    <a href="configure-nbgrader.html" title="Previous Chapter: Configuring nbgrader"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Configuring nbgrader</span>
+    </a>
+  </li>
+  <li>
+    <a href="acknowledgment.html" title="Next Chapter: Acknowledgment"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Acknowledgment &raquo;</span>
+    </a>
+  </li>
+            </ul>
+          
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-9 content">
+      
+  <div class="section" id="using-nbgrader">
+<h1>Using nbgrader<a class="headerlink" href="#using-nbgrader" title="Permalink to this headline">¶</a></h1>
+<p>With the reference deployment, instructors can start to use nbgrader.
+This section contains a rough sketch
+of what that looks like. For full details see the <a class="reference external" href="http://nbgrader.readthedocs.org/en/latest/">nbgrader
+documentation</a>.</p>
+<div class="section" id="preparing-class-assignments-instructor">
+<h2>Preparing class assignments - Instructor<a class="headerlink" href="#preparing-class-assignments-instructor" title="Permalink to this headline">¶</a></h2>
+<p>To use nbgrader, an instructor will primarily use the nbgrader command line
+program.</p>
+<div class="section" id="create-a-list-of-students-and-assignments">
+<h3>Create a list of students and assignments<a class="headerlink" href="#create-a-list-of-students-and-assignments" title="Permalink to this headline">¶</a></h3>
+<p>Before doing this, the instructor will need to edit the
+<code class="file docutils literal"><span class="pre">nbgrader_config.py</span></code> file with a list of students and assignments as
+follows:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">NbGrader</span><span class="o">.</span><span class="n">db_assignments</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ps1&quot;</span><span class="p">)]</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NbGrader</span><span class="o">.</span><span class="n">db_students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;bitdiddle&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s2">&quot;Ben&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Bitdiddle&quot;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;hacker&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s2">&quot;Alyssa&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Hacker&quot;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;reasoner&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s2">&quot;Louis&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Reasoner&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also add an <code class="docutils literal"><span class="pre">email</span></code> field to each student and a <code class="docutils literal"><span class="pre">duedate</span></code> field to
+each assignment.</p>
+<p>Remember to add new assignments to the <code class="file docutils literal"><span class="pre">nbgrader_config.py</span></code> file as the
+assignments are created.</p>
+</div>
+<div class="section" id="create-an-assignment-directory">
+<h3>Create an assignment directory<a class="headerlink" href="#create-an-assignment-directory" title="Permalink to this headline">¶</a></h3>
+<p>Create a directory for each assignment&#8217;s source:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd ~/nbgrader/&lt;course&gt;
+$ mkdir source/&lt;assignment&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="copy-notebooks-into-assignment-directory">
+<h3>Copy notebooks into assignment directory<a class="headerlink" href="#copy-notebooks-into-assignment-directory" title="Permalink to this headline">¶</a></h3>
+<p>Copy notebooks into the assignment directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cp ~/Problem1.ipynb ~/nbgrader/&lt;course&gt;/source/&lt;assignment&gt;
+$ cp ~/Problem2.ipynb ~/nbgrader/&lt;course&gt;/source/&lt;assignment&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-student-version-of-an-assignment">
+<h3>Create a student version of an assignment<a class="headerlink" href="#create-a-student-version-of-an-assignment" title="Permalink to this headline">¶</a></h3>
+<p>These notebooks should be prepared using the nbgrader
+&#8220;Create Assignment Celltoolbar&#8221;. Now create the assignment:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader assign &lt;assignment&gt;
+</pre></div>
+</div>
+<p>After creating the student versions of the notebooks, put them into the
+<code class="file docutils literal"><span class="pre">~/nbgrader/&lt;course&gt;/release/&lt;assignment&gt;</span></code> directory, and remember
+to remove your solutions.</p>
+</div>
+<div class="section" id="release-the-assignment">
+<h3>Release the assignment<a class="headerlink" href="#release-the-assignment" title="Permalink to this headline">¶</a></h3>
+<p>Next, release the assignment to students:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader release &lt;assignment&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-an-assignment-students">
+<h2>Working with an assignment - Students<a class="headerlink" href="#working-with-an-assignment-students" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fetch-the-assignment">
+<h3>Fetch the assignment<a class="headerlink" href="#fetch-the-assignment" title="Permalink to this headline">¶</a></h3>
+<p>At this point, students can fetch the assignment by doing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader fetch --course &lt;course&gt; &lt;assignment&gt;
+</pre></div>
+</div>
+<p>That will give students a copy of the assignment directory with all of the
+notebooks.</p>
+</div>
+<div class="section" id="submit-an-assignment-solution">
+<h3>Submit an assignment solution<a class="headerlink" href="#submit-an-assignment-solution" title="Permalink to this headline">¶</a></h3>
+<p>When students are done working the notebooks, they can submit the assignment
+by doing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader submit --course &lt;course&gt; &lt;assignment&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="grading-the-assignments-instructor">
+<h2>Grading the assignments - Instructor<a class="headerlink" href="#grading-the-assignments-instructor" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="collect-student-assignments">
+<h3>Collect student assignments<a class="headerlink" href="#collect-student-assignments" title="Permalink to this headline">¶</a></h3>
+<p>You can collect submitted assignments by doing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader collect &lt;assignment&gt;
+</pre></div>
+</div>
+<p>This puts the students submitted work into the
+<code class="file docutils literal"><span class="pre">~/nbgrader/&lt;course&gt;/submitted/&lt;assignment&gt;</span></code> directory.</p>
+</div>
+<div class="section" id="grade-the-assignments">
+<h3>Grade the assignments<a class="headerlink" href="#grade-the-assignments" title="Permalink to this headline">¶</a></h3>
+<p>To enter those notebooks into the nbgrader web grading system, run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader autograde &lt;assignment&gt;
+</pre></div>
+</div>
+<p>By default, this will rerun all of the students notebooks.</p>
+<p>If you don&#8217;t want to run them:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader autograde --no-execute &lt;assignment&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>To see the full command line options for nbgrader, run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader &lt;subcommand&gt; --help
+</pre></div>
+</div>
+<p>Some other things you can do with nbgrader:</p>
+<ul class="simple">
+<li>Run <strong class="command">collect</strong> and <strong class="command">autograde</strong> commands for a single
+student or notebook.</li>
+<li>Collect a single assignment multiple times and regrade all or parts
+selectively.</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Project Jupyter.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

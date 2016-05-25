@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Spawners &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="The JupyterHub API" href="index.html"/>
+        <link rel="next" title="Users" href="user.html"/>
+        <link rel="prev" title="Authenticators" href="auth.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The JupyterHub API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authenticators</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Spawners</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-jupyterhub.spawner">Module: <code class="docutils literal"><span class="pre">jupyterhub.spawner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spawner"><code class="docutils literal"><span class="pre">Spawner</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">Users</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">The JupyterHub API</a> &raquo;</li>
+      
+    <li>Spawners</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/spawner.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spawners">
+<h1>Spawners<a class="headerlink" href="#spawners" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-jupyterhub.spawner">
+<span id="module-jupyterhub-spawner"></span><h2>Module: <a class="reference internal" href="#module-jupyterhub.spawner" title="jupyterhub.spawner"><code class="xref py py-mod docutils literal"><span class="pre">jupyterhub.spawner</span></code></a><a class="headerlink" href="#module-jupyterhub.spawner" title="Permalink to this headline">¶</a></h2>
+<p>Class for spawning single-user notebook servers.</p>
+<div class="section" id="spawner">
+<h3><a class="reference internal" href="#jupyterhub.spawner.Spawner" title="jupyterhub.spawner.Spawner"><code class="xref py py-class docutils literal"><span class="pre">Spawner</span></code></a><a class="headerlink" href="#spawner" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="jupyterhub.spawner.Spawner">
+<em class="property">class </em><code class="descclassname">jupyterhub.spawner.</code><code class="descname">Spawner</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for spawning single-user notebook servers.</p>
+<p>Subclass this, and override the following methods:</p>
+<ul class="simple">
+<li>load_state</li>
+<li>get_state</li>
+<li>start</li>
+<li>stop</li>
+<li>poll</li>
+</ul>
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.get_args">
+<code class="descname">get_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the arguments to be passed after self.cmd</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.get_env">
+<code class="descname">get_env</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.get_env" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the environment we should use</p>
+<p>Default returns a copy of self.env.
+Use this to access the env in Spawner.start to allow extension in subclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.get_state">
+<code class="descname">get_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>store the state necessary for load_state</p>
+<p>A black box of extra state for custom spawners.
+Subclasses should call <cite>super</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>state</strong> &#8211; a JSONable dict of state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.options_from_form">
+<code class="descname">options_from_form</code><span class="sig-paren">(</span><em>form_data</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.options_from_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpret HTTP form data</p>
+<p>Form data will always arrive as a dict of lists of strings.
+Override this function to understand single-values, numbers, etc.</p>
+<p>This should coerce form data into the structure expected by self.user_options,
+which must be a dict.</p>
+<p>Instances will receive this data on self.user_options, after passing through this function,
+prior to <cite>Spawner.start</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.poll">
+<code class="descname">poll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.poll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the single-user process is running</p>
+<p>return None if it is, an exit status (0 if unknown) if it is not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the single-user process</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="jupyterhub.spawner.Spawner.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><em>now=False</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.Spawner.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the single-user process</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jupyterhub.spawner.LocalProcessSpawner">
+<em class="property">class </em><code class="descclassname">jupyterhub.spawner.</code><code class="descname">LocalProcessSpawner</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jupyterhub.spawner.LocalProcessSpawner" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Spawner that just uses Popen to start local processes as users.</p>
+<p>Requires users to exist on the local system.</p>
+<p>This is the default spawner for JupyterHub.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="user.html" class="btn btn-neutral float-right" title="Users" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="auth.html" class="btn btn-neutral" title="Authenticators" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

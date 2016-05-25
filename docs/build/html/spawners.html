@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Writing a custom Spawner &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="index.html"/>
+        <link rel="next" title="Troubleshooting" href="troubleshooting.html"/>
+        <link rel="prev" title="Writing a custom Authenticator" href="authenticators.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Writing a custom Spawner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spawner-control-methods">Spawner control methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spawner-start">Spawner.start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spawner-poll">Spawner.poll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spawner-stop">Spawner.stop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#spawner-state">Spawner state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spawner-options-form">Spawner options form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spawner-options-from-form"><code class="docutils literal"><span class="pre">Spawner.options_from_form</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Writing a custom Spawner</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spawners.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="writing-a-custom-spawner">
+<span id="writing-a-custom-spawner"></span><h1>Writing a custom Spawner<a class="headerlink" href="#writing-a-custom-spawner" title="Permalink to this headline">¶</a></h1>
+<p>A <a class="reference external" href="https://github.com/jupyter/jupyterhub/blob/master/jupyterhub/spawner.py">Spawner</a> starts each single-user notebook server.
+The Spawner represents an abstract interface to a process,
+and a custom Spawner needs to be able to take three actions:</p>
+<ul class="simple">
+<li>start the process</li>
+<li>poll whether the process is still running</li>
+<li>stop the process</li>
+</ul>
+<div class="section" id="examples">
+<span id="examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Custom Spawners for JupyterHub can be found on the <a class="reference external" href="https://github.com/jupyter/jupyterhub/wiki/Spawners">JupyterHub wiki</a>. Some examples include:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/jupyter/dockerspawner">DockerSpawner</a> for spawning user servers in Docker containers<ul>
+<li>dockerspawner.DockerSpawner for spawning identical Docker containers for
+each users</li>
+<li>dockerspawner.SystemUserSpawner for spawning Docker containers with an
+environment and home directory for each users</li>
+</ul>
+</li>
+<li><a class="reference external" href="https://github.com/jupyter/sudospawner">SudoSpawner</a> enables JupyterHub to
+run without being root, by spawning an intermediate process via <code class="docutils literal"><span class="pre">sudo</span></code></li>
+<li><a class="reference external" href="https://github.com/mbmilligan/batchspawner">BatchSpawner</a> for spawning remote
+servers using batch systems</li>
+<li><a class="reference external" href="https://github.com/zonca/remotespawner">RemoteSpawner</a> to spawn notebooks
+and a remote server and tunnel the port via SSH</li>
+<li><a class="reference external" href="https://github.com/compmodels/jupyterhub/blob/master/swarmspawner.py">SwarmSpawner</a>
+for spawning containers using Docker Swarm</li>
+</ul>
+</div>
+<div class="section" id="spawner-control-methods">
+<span id="spawner-control-methods"></span><h2>Spawner control methods<a class="headerlink" href="#spawner-control-methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spawner-start">
+<span id="spawner-start"></span><h3>Spawner.start<a class="headerlink" href="#spawner-start" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Spawner.start</span></code> should start the single-user server for a single user.
+Information about the user can be retrieved from <code class="docutils literal"><span class="pre">self.user</span></code>,
+an object encapsulating the user&#8217;s name, authentication, and server info.</p>
+<p>When <code class="docutils literal"><span class="pre">Spawner.start</span></code> returns, it should have stored the IP and port
+of the single-user server in <code class="docutils literal"><span class="pre">self.user.server</span></code>.</p>
+<p><strong>NOTE:</strong> When writing coroutines, <em>never</em> <code class="docutils literal"><span class="pre">yield</span></code> in between a database change and a commit.</p>
+<p>Most <code class="docutils literal"><span class="pre">Spawner.start</span></code> functions will look similar to this example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span> <span class="c1"># or other host or IP address, as seen by the Hub</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">1234</span> <span class="c1"># port selected somehow</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1"># always commit before yield, if modifying db values</span>
+    <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actually_start_server_somehow</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">Spawner.start</span></code> returns, the single-user server process should actually be running,
+not just requested. JupyterHub can handle <code class="docutils literal"><span class="pre">Spawner.start</span></code> being very slow
+(such as PBS-style batch queues, or instantiating whole AWS instances)
+via relaxing the <code class="docutils literal"><span class="pre">Spawner.start_timeout</span></code> config value.</p>
+</div>
+<div class="section" id="spawner-poll">
+<span id="spawner-poll"></span><h3>Spawner.poll<a class="headerlink" href="#spawner-poll" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Spawner.poll</span></code> should check if the spawner is still running.
+It should return <code class="docutils literal"><span class="pre">None</span></code> if it is still running,
+and an integer exit status, otherwise.</p>
+<p>For the local process case, <code class="docutils literal"><span class="pre">Spawner.poll</span></code> uses <code class="docutils literal"><span class="pre">os.kill(PID,</span> <span class="pre">0)</span></code>
+to check if the local process is still running.</p>
+</div>
+<div class="section" id="spawner-stop">
+<span id="spawner-stop"></span><h3>Spawner.stop<a class="headerlink" href="#spawner-stop" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Spawner.stop</span></code> should stop the process. It must be a tornado coroutine, which should return when the process has finished exiting.</p>
+</div>
+</div>
+<div class="section" id="spawner-state">
+<span id="spawner-state"></span><h2>Spawner state<a class="headerlink" href="#spawner-state" title="Permalink to this headline">¶</a></h2>
+<p>JupyterHub should be able to stop and restart without tearing down
+single-user notebook servers. To do this task, a Spawner may need to persist
+some information that can be restored later.
+A JSON-able dictionary of state can be used to store persisted information.</p>
+<p>Unlike start, stop, and poll methods, the state methods must not be coroutines.</p>
+<p>For the single-process case, the Spawner state is only the process ID of the server:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;get the current state&quot;&quot;&quot;</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="p">:</span>
+        <span class="n">state</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span>
+    <span class="k">return</span> <span class="n">state</span>
+
+<span class="k">def</span> <span class="nf">load_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;load state from the database&quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;pid&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">clear_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;clear any state (called after shutdown)&quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">clear_state</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spawner-options-form">
+<span id="spawner-options-form"></span><h2>Spawner options form<a class="headerlink" href="#spawner-options-form" title="Permalink to this headline">¶</a></h2>
+<p>(new in 0.4)</p>
+<p>Some deployments may want to offer options to users to influence how their servers are started.
+This may include cluster-based deployments, where users specify what resources should be available,
+or docker-based deployments where users can select from a list of base images.</p>
+<p>This feature is enabled by setting <code class="docutils literal"><span class="pre">Spawner.options_form</span></code>, which is an HTML form snippet
+inserted unmodified into the spawn form.
+If the <code class="docutils literal"><span class="pre">Spawner.options_form</span></code> is defined, when a user tries to start their server, they will be directed to a form page, like this:</p>
+<p><img alt="spawn-form" src="_images/spawn-form.png" /></p>
+<p>If <code class="docutils literal"><span class="pre">Spawner.options_form</span></code> is undefined, the user&#8217;s server is spawned directly, and no spawn page is rendered.</p>
+<p>See <a class="reference external" href="https://github.com/jupyter/jupyterhub/blob/master/examples/spawn-form/jupyterhub_config.py">this example</a> for a form that allows custom CLI args for the local spawner.</p>
+<div class="section" id="spawner-options-from-form">
+<span id="spawner-options-from-form"></span><h3><code class="docutils literal"><span class="pre">Spawner.options_from_form</span></code><a class="headerlink" href="#spawner-options-from-form" title="Permalink to this headline">¶</a></h3>
+<p>Options from this form will always be a dictionary of lists of strings, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;integer&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;5&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;some text&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;select&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">formdata</span></code> arrives, it is passed through <code class="docutils literal"><span class="pre">Spawner.options_from_form(formdata)</span></code>,
+which is a method to turn the form data into the correct structure.
+This method must return a dictionary, and is meant to interpret the lists-of-strings into the correct types. For example, the <code class="docutils literal"><span class="pre">options_from_form</span></code> for the above form would look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">options_from_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formdata</span><span class="p">):</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">options</span><span class="p">[</span><span class="s1">&#39;integer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">formdata</span><span class="p">[</span><span class="s1">&#39;integer&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># single integer value</span>
+    <span class="n">options</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">formdata</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># single string value</span>
+    <span class="n">options</span><span class="p">[</span><span class="s1">&#39;select&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">formdata</span><span class="p">[</span><span class="s1">&#39;select&#39;</span><span class="p">]</span> <span class="c1"># list already correct</span>
+    <span class="n">options</span><span class="p">[</span><span class="s1">&#39;notinform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;extra info&#39;</span> <span class="c1"># not in the form at all</span>
+    <span class="k">return</span> <span class="n">options</span>
+</pre></div>
+</div>
+<p>which would return:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;integer&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;some text&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;select&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;notinform&#39;</span><span class="p">:</span> <span class="s1">&#39;extra info&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">Spawner.spawn</span></code> is called, this dictionary is accessible as <code class="docutils literal"><span class="pre">self.user_options</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="authenticators.html" class="btn btn-neutral" title="Writing a custom Authenticator" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>jupyterhub-deploy-docker &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>jupyterhub-deploy-docker</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/reference-deployments/jupyterhub-deploy-docker/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="jupyterhub-deploy-docker">
+<span id="jupyterhub-deploy-docker"></span><h1>jupyterhub-deploy-docker<a class="headerlink" href="#jupyterhub-deploy-docker" title="Permalink to this headline">¶</a></h1>
+<p>This repository provides a reference deployment of <a class="reference external" href="https://github.com/jupyter/jupyterhub">JupyterHub</a>, a multi-user <a class="reference external" href="http://jupyter.org/">Jupyter Notebook</a> environment, on a <strong>single host</strong> using <a class="reference external" href="https://docs.docker.com">Docker</a>.</p>
+<p>This deployment:</p>
+<ul class="simple">
+<li>Runs the <a class="reference external" href="https://jupyterhub.readthedocs.org/en/latest/getting-started.html#overview">JupyterHub components</a> in a Docker container on the host</li>
+<li>Uses <a class="reference external" href="https://github.com/jupyter/dockerspawner">DockerSpawner</a> to spawn single-user Jupyter Notebook servers in separate Docker containers on the same host</li>
+<li>Persists JupyterHub data in a Docker volume on the host</li>
+<li>Persists user notebook directories in Docker volumes on the host</li>
+<li>Uses <a class="reference external" href="https://github.com/jupyter/oauthenticator">OAuthenticator</a> and <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub OAuth</a> to authenticate users</li>
+</ul>
+<p><img alt="JupyterHub single host Docker deployment" src="reference-deployments/jupyterhub-deploy-docker/internal/jupyterhub-docker.png" /></p>
+<div class="section" id="use-cases">
+<span id="use-cases"></span><h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<p>Possible use cases for this deployment may include, but are not limited to:</p>
+<ul class="simple">
+<li>A JupyterHub demo environment that you can spin up relatively quickly.</li>
+<li>A multi-user Jupyter Notebook environment for small classes, teams, or departments.</li>
+</ul>
+</div>
+<div class="section" id="disclaimer">
+<span id="disclaimer"></span><h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>
+<p>This deployment is <strong>NOT</strong> intended for a production environment.</p>
+</div>
+<div class="section" id="prerequisites">
+<span id="prerequisites"></span><h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This deployment uses Docker for all the things. It assumes that you wiil be using <a class="reference external" href="https://docs.docker.com/machine/overview/">Docker Machine</a> and <a class="reference external" href="https://docs.docker.com/compose/overview/">Docker Compose</a> on a local workstation or laptop to create, build, and run Docker images on a remote host.  It requires <a class="reference external" href="https://www.docker.com/products/docker-toolbox">Docker Toolbox</a> 1.11.0 or higher.  See the <a class="reference external" href="https://docs.docker.com/engine/installation/">installation instructions</a> for your environment.</li>
+<li>This example configures JupyterHub for HTTPS connections (the default).  As such, you must provide TLS certificate chain and key files to the JupyterHub server.  If you do not have your own certificate chain and key, you can either <a class="reference external" href="https://jupyter-notebook.readthedocs.org/en/latest/public_server.html#using-ssl-for-encrypted-communication">create self-signed versions</a>, or obtain real ones from <a class="reference external" href="https://letsencrypt.org">Let&#8217;s Encrypt</a> (see the <a class="reference external" href="examples/letsencrypt/README.md">letsencrypt example</a> for instructions).</li>
+</ul>
+</div>
+<div class="section" id="create-a-docker-machine">
+<span id="create-a-docker-machine"></span><h2>Create a Docker Machine<a class="headerlink" href="#create-a-docker-machine" title="Permalink to this headline">¶</a></h2>
+<p>Use <a class="reference external" href="https://docs.docker.com/machine/">Docker Machine</a> to provision a new host, or to connect to an existing host.  In either case, the result will be a &#8220;machine&#8221; configured on your local workstation or laptop that represents the remote host.  After you activate the machine on your local workstation, when you run <code class="docutils literal"><span class="pre">docker</span></code> commands locally, Docker Machine will execute them on the remote host for you.</p>
+<div class="section" id="provision-a-new-host">
+<span id="provision-a-new-host"></span><h3>Provision a new host<a class="headerlink" href="#provision-a-new-host" title="Permalink to this headline">¶</a></h3>
+<p>Docker Machine can provision new hosts on various platforms using one of its <a class="reference external" href="https://docs.docker.com/machine/drivers/">supported drivers</a>.   When provisioning a host, Docker Machine will automatically install the latest version of <a class="reference external" href="https://www.docker.com/products/docker-engine">Docker Engine</a> on the host.  It will also generate local TLS certificate and key files to connect to the host and authenticate with the <code class="docutils literal"><span class="pre">docker</span></code> daemon on the host.</p>
+<p>In the following example, we provision a new virtual server on <a class="reference external" href="https://www.softlayer.com/promo/freeCloud/freecloud">IBM SoftLayer</a>.  (You can provision similarly on RackSpace, AWS, and other hosting providers).  We set <code class="docutils literal"><span class="pre">DRIVER_OPTS</span></code> to the SoftLayer-specific options.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Set Docker Machine SoftLayer driver options
+export DRIVER_OPTS=&quot;--driver softlayer \
+  --softlayer-api-key &lt;my_softlayer_api_key&gt; \
+  --softlayer-user &lt;my_softlayer_username&gt; \
+  --softlayer-domain mydomain \
+  --softlayer-cpu 16 \
+  --softlayer-memory 65536 \
+  --softlayer-disk-size 100 \
+  --softlayer-region wdc01&quot;
+  
+# Create a machine named jupyterhub
+docker-machine create $DRIVER_OPTS jupyterhub
+</pre></div>
+</div>
+</div>
+<div class="section" id="connect-to-an-existing-host">
+<span id="connect-to-an-existing-host"></span><h3>Connect to an existing host<a class="headerlink" href="#connect-to-an-existing-host" title="Permalink to this headline">¶</a></h3>
+<p>This example configures a &#8220;machine&#8221; on your local workstation that connects to an existing remote host at IP address <code class="docutils literal"><span class="pre">10.0.0.10</span></code>.  To do this, you must use Docker Machine&#8217;s <code class="docutils literal"><span class="pre">generic</span></code> driver, and your local workstation must have a private SSH key that allows you to perform password-less login to the host.</p>
+<p>Substitute your own IP address and path to SSH key in the <code class="docutils literal"><span class="pre">DRIVER_OPTS</span></code> below.  Note that when you run the <code class="docutils literal"><span class="pre">docker-machine</span> <span class="pre">create</span></code> command, Docker Machine will install and configure the latest Docker Engine on the remote host (or upgrade the Docker Engine on the host if it is already installed).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Use the generic driver to create a Docker machine that
+# controls the Docker daemon on an existing host
+export DRIVER_OPTS=&quot;--driver generic \
+  --generic-ip-address 10.0.0.10 \
+  --generic-ssh-key /Users/jtyberg/.ssh/myhost_rsa.pem&quot;
+
+# Create a machine named jupyterhub
+docker-machine create $DRIVER_OPTS jupyterhub
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="activate-docker-machine">
+<span id="activate-docker-machine"></span><h2>Activate Docker Machine<a class="headerlink" href="#activate-docker-machine" title="Permalink to this headline">¶</a></h2>
+<p>You must set specific <code class="docutils literal"><span class="pre">DOCKER_*</span></code> environment variables to tell <code class="docutils literal"><span class="pre">docker</span></code> that it should run commands against a particular machine.  The remainder of this document assumes that the machine called <code class="docutils literal"><span class="pre">jupyterhub</span></code> is active, and therefore, all <code class="docutils literal"><span class="pre">docker</span></code> commands will run on the <code class="docutils literal"><span class="pre">jupyterhub</span></code> remote host.</p>
+<p>To set the <code class="docutils literal"><span class="pre">jupyterhub</span></code> machine as active:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">eval</span> <span class="s2">&quot;$(docker-machine env jupyterhub)&quot;</span>
+</pre></div>
+</div>
+<p>All this does is set the right environment variables:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">|</span><span class="n">grep</span> <span class="n">DOCKER</span>
+
+<span class="n">DOCKER_HOST</span><span class="o">=</span><span class="n">tcp</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">2376</span>
+<span class="n">DOCKER_MACHINE_NAME</span><span class="o">=</span><span class="n">jupyterhub</span>
+<span class="n">DOCKER_TLS_VERIFY</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">DOCKER_CERT_PATH</span><span class="o">=/</span><span class="n">Users</span><span class="o">/</span><span class="n">jtyberg</span><span class="o">/.</span><span class="n">docker</span><span class="o">/</span><span class="n">machine</span><span class="o">/</span><span class="n">machines</span><span class="o">/</span><span class="n">jupyterhub</span>
+</pre></div>
+</div>
+<p>To see which machine is active:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">machine</span> <span class="n">active</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-docker-network">
+<span id="create-a-docker-network"></span><h2>Create a Docker Network<a class="headerlink" href="#create-a-docker-network" title="Permalink to this headline">¶</a></h2>
+<p>Create a Docker network for inter-container communication.  The benefits of using a Docker network are:</p>
+<ul class="simple">
+<li>container isolation - only the containers on the network can access one another</li>
+<li>name resolution - Docker daemon runs an embedded DNS server to provide automatic service discovery for containers connected to user-defined networks.  This allows us to access containers on the same network by name.</li>
+</ul>
+<p>Here we create a Docker network named <code class="docutils literal"><span class="pre">jupyterhub-network</span></code>.  Later, we will configure the JupyterHub and single-user Jupyter Notebook containers to run attached to this network.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">network</span> <span class="n">create</span> <span class="n">jupyterhub</span><span class="o">-</span><span class="n">network</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-github-authentication">
+<span id="setup-github-authentication"></span><h2>Setup GitHub Authentication<a class="headerlink" href="#setup-github-authentication" title="Permalink to this headline">¶</a></h2>
+<p>This deployment uses GitHub OAuth to authenticate users.  It requires that you create a <a class="reference external" href="https://github.com/settings/applications/new">GitHub application</a>. You will need to specify an OAuth callback URL in the following form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span><span class="o">&gt;/</span><span class="n">hub</span><span class="o">/</span><span class="n">oauth_callback</span>
+</pre></div>
+</div>
+<p>You must pass the secrets that GitHub provides for your application to JupyterHub at runtime.  You can do this by setting the <code class="docutils literal"><span class="pre">GITHUB_CLIENT_ID</span></code>, <code class="docutils literal"><span class="pre">GITHUB_CLIENT_SECRET</span></code>, and <code class="docutils literal"><span class="pre">OAUTH_CALLBACK_URL</span></code> environment variables when you run the JupyterHub container, or you can add them to the <code class="docutils literal"><span class="pre">.env</span></code> file in the root directory of this repository.  For example,</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GITHUB_CLIENT_ID</span><span class="o">=&lt;</span><span class="n">github_client_id</span><span class="o">&gt;</span>
+<span class="n">GITHUB_CLIENT_SECRET</span><span class="o">=&lt;</span><span class="n">github_client_secret</span><span class="o">&gt;</span>
+<span class="n">OAUTH_CALLBACK_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span><span class="o">&gt;/</span><span class="n">hub</span><span class="o">/</span><span class="n">oauth_callback</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> The <code class="docutils literal"><span class="pre">.env</span></code> file is a special file that Docker Compose uses to lookup environment variables.  If you choose to place the GitHub secrets in this file, you should ensure that this file remains private (e.g., do not commit the secrets to source control).</p>
+</div>
+<div class="section" id="build-the-jupyterhub-docker-image">
+<span id="build-the-jupyterhub-docker-image"></span><h2>Build the JupyterHub Docker image<a class="headerlink" href="#build-the-jupyterhub-docker-image" title="Permalink to this headline">¶</a></h2>
+<p>Configure JupyterHub and build it into a Docker image.</p>
+<ol>
+<li><p class="first">Copy your TLS certificate and key to a directory named <code class="docutils literal"><span class="pre">secrets</span></code> within this repository directory.  These will be added to the Docker image at build time.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">secrets</span>
+<span class="n">cp</span> <span class="n">jupyterhub</span><span class="o">.</span><span class="n">cer</span> <span class="n">jupyterhub</span><span class="o">.</span><span class="n">key</span> <span class="n">secrets</span><span class="o">/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a <code class="docutils literal"><span class="pre">userlist</span></code> file with a list of authorized users.  At a minimum, this file should contain a single admin user.  The username should be a GitHub username.  For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jtyberg</span> <span class="n">admin</span>
+</pre></div>
+</div>
+<p>The admin user will have the ability to add more users in the JupyterHub admin console.</p>
+</li>
+<li><p class="first">Build the JupyterHub Docker image.  For convenience, this repo provides a <code class="docutils literal"><span class="pre">hub.sh</span></code> script that wraps <a class="reference external" href="https://docs.docker.com/compose/reference/">docker-compose</a>, so you can run it with the docker-compose <a class="reference external" href="https://docs.docker.com/compose/reference/overview/">command line arguments</a>.  To build the JupyterHub image on the active Docker machine host, run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">hub</span><span class="o">.</span><span class="n">sh</span> <span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="create-a-jupyterhub-data-volume">
+<span id="create-a-jupyterhub-data-volume"></span><h2>Create a JupyterHub Data Volume<a class="headerlink" href="#create-a-jupyterhub-data-volume" title="Permalink to this headline">¶</a></h2>
+<p>Create a Docker volume to persist JupyterHub data.   This volume will reside on the host machine.  Using a volume allows user lists, cookies, etc., to persist across JupyterHub container restarts.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">volume</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">jupyterhub</span><span class="o">-</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pull-the-jupyter-notebook-image">
+<span id="pull-the-jupyter-notebook-image"></span><h2>Pull the Jupyter Notebook Image<a class="headerlink" href="#pull-the-jupyter-notebook-image" title="Permalink to this headline">¶</a></h2>
+<p>Pull the Jupyter Notebook Docker image that you would like JupyterHub to spawn for each user.</p>
+<p>Note: Even though Docker will pull the image to the host the first time a user container is spawned, JupyterHub may timeout if the image is large, so it&#8217;s better to do it beforehand.</p>
+<p>This deployment uses the <a class="reference external" href="https://hub.docker.com/r/jupyter/scipy-notebook/">jupyter/scipy-notebook</a> Docker image, which is built from the <code class="docutils literal"><span class="pre">scipy-notebook</span></code> <a class="reference external" href="https://github.com/jupyter/docker-stacks">Docker stacks</a>.</p>
+<p>Note that the Docker stacks <code class="docutils literal"><span class="pre">*-notebook</span></code> images tagged <code class="docutils literal"><span class="pre">2d878db5cbff</span></code> include the <code class="docutils literal"><span class="pre">start-singleuser.sh</span></code> script required to start a single-user instance of the Notebook server that is compatible with JupyterHub.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">jupyter</span><span class="o">/</span><span class="n">scipy</span><span class="o">-</span><span class="n">notebook</span><span class="p">:</span><span class="mi">2</span><span class="n">d878db5cbff</span>
+</pre></div>
+</div>
+<p>Note: If you choose to use a different container image, you must set the <code class="docutils literal"><span class="pre">DOCKER_CONTAINER_IMAGE</span></code> environment variable in the <code class="docutils literal"><span class="pre">.env</span></code> file, or override it in the environment where you launch JupyterHub.</p>
+</div>
+<div class="section" id="run-the-jupyterhub-container">
+<span id="run-the-jupyterhub-container"></span><h2>Run the JupyterHub container<a class="headerlink" href="#run-the-jupyterhub-container" title="Permalink to this headline">¶</a></h2>
+<p>Run the JupyterHub container on the host.</p>
+<p>To run the JupyterHub container in detached mode:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">hub</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<p>Once the container is running, you should be able to access the JupyterHub console at</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span>
+</pre></div>
+</div>
+<p>To bring down the JupyterHub container:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">hub</span><span class="o">.</span><span class="n">sh</span> <span class="n">down</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="faq">
+<span id="faq"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-can-i-view-the-logs-for-jupyterhub-or-users-notebook-servers">
+<span id="how-can-i-view-the-logs-for-jupyterhub-or-users-notebook-servers"></span><h3>How can I view the logs for JupyterHub or users&#8217; Notebook servers?<a class="headerlink" href="#how-can-i-view-the-logs-for-jupyterhub-or-users-notebook-servers" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">&lt;container&gt;</span></code>.  For example, to view the logs of the <code class="docutils literal"><span class="pre">jupyterhub</span></code> container</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">logs</span> <span class="n">jupyterhub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-do-i-specify-the-notebook-server-image-to-spawn-for-users">
+<span id="how-do-i-specify-the-notebook-server-image-to-spawn-for-users"></span><h3>How do I specify the Notebook server image to spawn for users?<a class="headerlink" href="#how-do-i-specify-the-notebook-server-image-to-spawn-for-users" title="Permalink to this headline">¶</a></h3>
+<p>In this deployment, JupyterHub uses DockerSpawner to spawn single-user Notebook servers.  The <code class="docutils literal"><span class="pre">jupyterhub_config.py</span></code> reads the image name from the <code class="docutils literal"><span class="pre">DOCKER_CONTAINER_IMAGE</span></code> environment variable.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">DockerSpawner</span><span class="o">.</span><span class="n">container_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DOCKER_CONTAINER_IMAGE&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>By default, this variable is set in the <code class="docutils literal"><span class="pre">.env</span></code> file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DOCKER_CONTAINER_IMAGE</span><span class="o">=</span><span class="n">jupyter</span><span class="o">/</span><span class="n">scipy</span><span class="o">-</span><span class="n">notebook</span><span class="p">:</span><span class="mi">2</span><span class="n">d878db5cbff</span>
+</pre></div>
+</div>
+<p>You can either change this value in the <code class="docutils literal"><span class="pre">.env</span></code> file, or you can override it by setting the <code class="docutils literal"><span class="pre">DOCKER_CONTAINER_IMAGE</span></code> variable to a different Notebook image in the environment where you launch JupyterHub.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DOCKER_CONTAINER_IMAGE</span><span class="o">=</span><span class="n">jupyterhub</span><span class="o">/</span><span class="n">pyspark</span><span class="o">-</span><span class="n">notebook</span><span class="p">:</span><span class="mi">2</span><span class="n">d878db5cbff</span> \ 
+    <span class="o">./</span><span class="n">hub</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="if-i-change-the-name-of-the-notebook-server-image-to-spawn-do-i-need-to-restart-jupyterhub">
+<span id="if-i-change-the-name-of-the-notebook-server-image-to-spawn-do-i-need-to-restart-jupyterhub"></span><h3>If I change the name of the Notebook server image to spawn, do I need to restart JupyterHub?<a class="headerlink" href="#if-i-change-the-name-of-the-notebook-server-image-to-spawn-do-i-need-to-restart-jupyterhub" title="Permalink to this headline">¶</a></h3>
+<p>Yes.  JupyterHub reads its configuration and sets the name of the Notebook server image to spawn during startup.   It you change the name of the Docker image to spawn, then you will need to restart the JupyterHub container.</p>
+<p>In this deployment, cookies are persisted to a Docker volume on the host, so restarting JupyterHub might cause a blip in service as the JupyterHub container restarts, but users will not have to login again; however, users may need to refresh their browsers to re-establish connections to active Notebook kernels.</p>
+</div>
+<div class="section" id="how-can-i-backup-a-user-s-notebook-directory">
+<span id="how-can-i-backup-a-user-s-notebook-directory"></span><h3>How can I backup a user&#8217;s notebook directory?<a class="headerlink" href="#how-can-i-backup-a-user-s-notebook-directory" title="Permalink to this headline">¶</a></h3>
+<p>There are multiple ways to <a class="reference external" href="https://docs.docker.com/engine/userguide/containers/dockervolumes/#backup-restore-or-migrate-data-volumes">backup and restore</a> data in Docker containers.</p>
+<p>Suppose you have the following running containers:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.ID}}</span><span class="se">\t</span><span class="s2">{{.Image}}</span><span class="se">\t</span><span class="s2">{{.Names}}&quot;</span>
+
+<span class="n">CONTAINER</span> <span class="n">ID</span>        <span class="n">IMAGE</span>                    <span class="n">NAMES</span>
+<span class="n">bc02dd6bb91b</span>        <span class="n">jupyter</span><span class="o">/</span><span class="n">minimal</span><span class="o">-</span><span class="n">notebook</span> <span class="n">jupyter</span><span class="o">-</span><span class="n">jtyberg</span>
+<span class="mi">7</span><span class="n">b48a0b33389</span>        <span class="n">jupyterhub</span>               <span class="n">jupyterhub</span>
+</pre></div>
+</div>
+<p>In this deployment, the user&#8217;s notebook directories (<code class="docutils literal"><span class="pre">/home/jovyan/work</span></code>) are backed by Docker volumes.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">inspect</span> <span class="o">-</span><span class="n">f</span> <span class="s1">&#39;{{ .Mounts }}&#39;</span> <span class="n">jupyter</span><span class="o">-</span><span class="n">jtyberg</span>
+
+<span class="p">[{</span><span class="n">jtyberg</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">jtyberg</span><span class="o">/</span><span class="n">_data</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">jovyan</span><span class="o">/</span><span class="n">work</span> <span class="n">local</span> <span class="n">rw</span> <span class="n">true</span> <span class="n">rprivate</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>We can backup the user&#8217;s notebook directory by running a separate container that mounts the user&#8217;s volume and creates a tarball of the directory.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> \
+  <span class="o">-</span><span class="n">u</span> <span class="n">root</span> \
+  <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">tmp</span><span class="p">:</span><span class="o">/</span><span class="n">backups</span> \
+  <span class="o">-</span><span class="n">v</span> <span class="n">jtyberg</span><span class="p">:</span><span class="o">/</span><span class="n">notebooks</span> \
+  <span class="n">jupyter</span><span class="o">/</span><span class="n">minimal</span><span class="o">-</span><span class="n">notebook</span> \
+  <span class="n">tar</span> <span class="n">cvf</span> <span class="o">/</span><span class="n">backups</span><span class="o">/</span><span class="n">jtyberg</span><span class="o">-</span><span class="n">backup</span><span class="o">.</span><span class="n">tar</span> <span class="o">/</span><span class="n">notebooks</span>
+</pre></div>
+</div>
+<p>The above command creates a tarball in the <code class="docutils literal"><span class="pre">/tmp</span></code> directory on the host.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

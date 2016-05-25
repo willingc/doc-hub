@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring nbgrader &mdash; JupyterHub for Teaching 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/yeti/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="JupyterHub for Teaching 1.0 documentation" href="index.html" />
+    <link rel="next" title="Using nbgrader" href="use-nbgrader.html" />
+    <link rel="prev" title="Installation Guide" href="installation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        JupyterHub for Teaching</a>
+      <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+          
+          
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+        
+          
+            <ul class='nav navbar-nav navbar-right'>
+                
+  <li>
+    <a href="installation.html" title="Previous Chapter: Installation Guide"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Installation Guide</span>
+    </a>
+  </li>
+  <li>
+    <a href="use-nbgrader.html" title="Next Chapter: Using nbgrader"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Using nbgrader &raquo;</span>
+    </a>
+  </li>
+            </ul>
+          
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-9 content">
+      
+  <div class="section" id="configuring-nbgrader">
+<h1>Configuring nbgrader<a class="headerlink" href="#configuring-nbgrader" title="Permalink to this headline">¶</a></h1>
+<p>The nbgrader package will be installed with the reference deployment.</p>
+<p>To run nbgrader&#8217;s formgrade application or use its notebook
+extensions, additional steps are needed.</p>
+<div class="section" id="configuring-the-extension">
+<h2>Configuring the extension<a class="headerlink" href="#configuring-the-extension" title="Permalink to this headline">¶</a></h2>
+<p>Each user who wants to use the notebook extension will need to run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ nbgrader extension activate
+</pre></div>
+</div>
+</div>
+<div class="section" id="deploy-formgrade">
+<h2>Deploy formgrade<a class="headerlink" href="#deploy-formgrade" title="Permalink to this headline">¶</a></h2>
+<p>Log into JupyterHub as the main instructor (<cite>nbgrader_owner</cite>).</p>
+<p>Run the ansible-playbook to deploy formgrade:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ansible-playbook deploy_formgrade.yml
+</pre></div>
+</div>
+<p>SSH into the server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ssh {user}@{hostname}
+</pre></div>
+</div>
+<p>Restart jupyterhub and nbgrader by doing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ supervisorctl reload
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-notes">
+<h2>Configuration notes<a class="headerlink" href="#configuration-notes" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">To limit the deployment to certain hosts, add the <code class="docutils literal"><span class="pre">-l</span> <span class="pre">hostname</span></code> to the
+commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ansible-playbook -l hostname deploy.yml
+</pre></div>
+</div>
+</li>
+<li><p class="first">The logs for <cite>jupyterhub</cite> are in <code class="file docutils literal"><span class="pre">/var/log/jupyterhub</span></code>.</p>
+</li>
+<li><p class="first">The logs for <cite>nbgrader</cite> are in <code class="file docutils literal"><span class="pre">/var/log/nbgrader</span></code>.</p>
+</li>
+<li><p class="first">If you are not using GitHub OAuth, you will need to manually create users using
+<cite>adduser</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ adduser --gecos &quot;&quot; username
+</pre></div>
+</div>
+</li>
+<li><p class="first">Change the ansible configuration by editing <code class="file docutils literal"><span class="pre">./ansible_cfg</span></code>.</p>
+</li>
+<li><p class="first">To manage the jupyterhub and nbgrader services by SSH to the server and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ supervisorctl jupyterhub { start, stop, restart }
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="troubleshooting-saving-and-restoring-users">
+<h2>Troubleshooting: Saving and restoring users<a class="headerlink" href="#troubleshooting-saving-and-restoring-users" title="Permalink to this headline">¶</a></h2>
+<p>In some situations, you may remount your user&#8217;s home directories into a new instance that
+doesn&#8217;t have their user accounts, but has their home directories. When recreating the
+same users it is important that they all have the same uids so the new users have
+ownership of the home directories.</p>
+<p><strong>This is only relevant when using GitHub OAuth for users and authentication.</strong></p>
+<p>To save the list of usernames and uids in <cite>{{homedir}}/saved_users.txt</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ansible-playbook saveusers.yml
+</pre></div>
+</div>
+<p>Then, when you run deploy.yml, it will look for this file and if it exists, will create
+those users with those exact uids and home directories.</p>
+<p>You can also manually create the users by running:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python3 create_users.py
+</pre></div>
+</div>
+<p>in the home directory.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Project Jupyter.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

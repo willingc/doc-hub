@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Deploy JupyterHub for teaching &mdash; JupyterHub 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JupyterHub 0.5.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JupyterHub
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started with JupyterHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html#further-reading">Further reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howitworks.html">How JupyterHub works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../websecurity.html">Web Security in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authenticators.html">Writing a custom Authenticator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spawners.html">Writing a custom Spawner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The JupyterHub API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community documentation</span></p>
+<ul class="simple">
+</ul>
+<p class="caption"><span class="caption-text">About JupyterHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Summary of changes in JupyterHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Questions? Suggestions?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter">Jupyter mailing list</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://jupyter.org">Jupyter website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter">Stack Overflow - Jupyter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://stackoverflow.com/questions/tagged/jupyter-notebook">Stack Overflow - Jupyter-notebook</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JupyterHub</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Deploy JupyterHub for teaching</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/reference-deployments/jupyterhub-deploy-teaching/README.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deploy-jupyterhub-for-teaching">
+<span id="deploy-jupyterhub-for-teaching"></span><h1>Deploy JupyterHub for teaching<a class="headerlink" href="#deploy-jupyterhub-for-teaching" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://groups.google.com/forum/#!forum/jupyter"><img alt="Google Group" src="https://img.shields.io/badge/-Google%20Group-lightgrey.svg" /></a>
+<a class="reference external" href="http://jupyterhub-deploy-teaching.readthedocs.org/en/latest/?badge=latest"><img alt="Documentation Status" src="http://readthedocs.org/projects/jupyterhub-deploy-teaching/badge/?version=latest" /></a></p>
+<p>The goal of this repository is to produce a reference deployment of JupyterHub
+for teaching with nbgrader.</p>
+<p>The repository started from <a class="reference external" href="https://github.com/calpolydatascience/jupyterhub-deploy-data301">this deployment</a> of JupyterHub
+for &#8220;Introduction to Data Science&#8221; at Cal Poly.
+It is designed to be a simple and reusable JupyterHub deployment, while
+following best practices.</p>
+<p>The main use case targeted is <strong>small to medium groups of trusted users
+working on a single server</strong>.</p>
+<div class="section" id="design-goal-of-this-reference-deployment">
+<span id="design-goal-of-this-reference-deployment"></span><h2>Design goal of this reference deployment<a class="headerlink" href="#design-goal-of-this-reference-deployment" title="Permalink to this headline">¶</a></h2>
+<p>Create a JupyterHub teaching reference deployment that is simple yet
+functional:</p>
+<ul class="simple">
+<li>Use a single server.</li>
+<li>Use Nginx as a frontend proxy, serving static assets, and a termination
+point for SSL/TLS.</li>
+<li>Configure using Ansible scripts.</li>
+<li>Use (optionally) https://letsencrypt.org/ for generating SSL certificates.</li>
+<li>Does not use Docker or containers</li>
+</ul>
+</div>
+<div class="section" id="prerequisites">
+<span id="prerequisites"></span><h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To <em>deploy</em> this JupyterHub reference deployment, you should have:</p>
+<ul class="simple">
+<li>An empty Ubuntu server running the latest stable release</li>
+<li>Local drives to be mounted</li>
+<li>A formatted and mounted directory to store user home directories</li>
+<li>A valid DNS name</li>
+<li>SSL certificate</li>
+<li>Ansible 2.0+ installed for JupyterHub configuration (<code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ansible&gt;=2.0</span></code>)</li>
+</ul>
+<p>For <em>administration</em> of the server, you should also:</p>
+<ul class="simple">
+<li>Specify the admin users of JupyterHub.</li>
+<li>Allow SSH key based access to server and add the public SSH keys of GitHub
+users who need to be able to SSH to the server as <code class="docutils literal"><span class="pre">root</span></code> for administration.</li>
+</ul>
+<p>For <em>managing users and services</em> on the server, you will:</p>
+<ul class="simple">
+<li>Create &#8220;Trusted&#8221; users on the system, meaning that you would give them a
+user-level shell account on the server</li>
+<li>Authenticate and manage users with either:<ul>
+<li>Regular Unix users and PAM.</li>
+<li>GitHub OAuth</li>
+</ul>
+</li>
+<li>Manage the running of jupyterhub and nbgrader using supervisor.</li>
+<li>Monitor the state of the server (optional feature) using NewRelic or your
+cloud provider.</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<span id="installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Follow the detailed instructions in the <a class="reference external" href="http://jupyterhub-deploy-teaching.readthedocs.org/en/latest/installation.html">Installation Guide</a>.</p>
+<p>The basic steps are:</p>
+<ul class="simple">
+<li>Create the hosts group with Fully Qualified Domain Names (FQDNs) of the hosts</li>
+<li>Secure your deployment with SSL</li>
+<li>Deploy with Ansible <code class="docutils literal"><span class="pre">ansible-playbook</span> <span class="pre">deploy.yml</span></code></li>
+<li>Verify your deployment and reboot the Hub <code class="docutils literal"><span class="pre">supervisorctl</span> <span class="pre">reload</span></code></li>
+</ul>
+</div>
+<div class="section" id="configuring-nbgrader">
+<span id="configuring-nbgrader"></span><h2>Configuring nbgrader<a class="headerlink" href="#configuring-nbgrader" title="Permalink to this headline">¶</a></h2>
+<p>The nbgrader package is installed when JupyterHub is installed using the
+steps in the Installation Guide.</p>
+<p>View the <a class="reference external" href="http://jupyterhub-deploy-teaching.readthedocs.org/en/latest/configure-nbgrader.html">documentation for detailed configuration steps</a>. The basic steps to
+configure formgrade or nbgrader&#8217;s notebook extensions are:</p>
+<ul class="simple">
+<li>activate the extension <code class="docutils literal"><span class="pre">nbgrader</span> <span class="pre">extension</span> <span class="pre">activate</span></code></li>
+<li>log into JupyterHub</li>
+<li>run ansible script <code class="docutils literal"><span class="pre">ansible-playbook</span> <span class="pre">deploy_formgrade.yml</span></code></li>
+<li>SSH into JupyterHub</li>
+<li>reboot the Hub and nbgrader <code class="docutils literal"><span class="pre">supervisorctl</span> <span class="pre">reload</span></code></li>
+</ul>
+</div>
+<div class="section" id="using-nbgrader">
+<span id="using-nbgrader"></span><h2>Using nbgrader<a class="headerlink" href="#using-nbgrader" title="Permalink to this headline">¶</a></h2>
+<p>With this reference deployment, instructors can start to use nbgrader.
+The <a class="reference external" href="http://jupyterhub-deploy-teaching.readthedocs.org/en/latest/use-nbgrader.html">Using nbgrader section</a>
+of the reference deployment documentation gives brief instructions about
+creating course assignments, releasing them to students, and grading student
+submissions.</p>
+<p>For full details about nbgrader and its features, see the <a class="reference external" href="http://nbgrader.readthedocs.org/en/latest/">nbgrader documentation</a>.</p>
+</div>
+<div class="section" id="notes">
+<span id="notes"></span><h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ansible-configuration-and-deployment">
+<span id="ansible-configuration-and-deployment"></span><h3>Ansible configuration and deployment<a class="headerlink" href="#ansible-configuration-and-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Change the ansible configuration by editing <code class="docutils literal"><span class="pre">./ansible_cfg</span></code>.</p>
+<p>To limit the deployment to certain hosts, add <code class="docutils literal"><span class="pre">-l</span> <span class="pre">hostname</span></code> to the
+Ansible deploy commands:</p>
+<p><code class="docutils literal"><span class="pre">ansible-playbook</span> <span class="pre">-l</span> <span class="pre">hostname</span> <span class="pre">deploy.yml</span></code></p>
+</div>
+<div class="section" id="authentication">
+<span id="authentication"></span><h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
+<p>If you are not using GitHub OAuth, you will need to manually create users
+using adduser: <code class="docutils literal"><span class="pre">adduser</span> <span class="pre">--gecos</span> <span class="pre">&quot;&quot;</span> <span class="pre">username</span></code>.</p>
+</div>
+<div class="section" id="logs">
+<span id="logs"></span><h3>Logs<a class="headerlink" href="#logs" title="Permalink to this headline">¶</a></h3>
+<p>The logs for jupyterhub are in <code class="docutils literal"><span class="pre">/var/log/jupyterhub</span></code>.</p>
+<p>The logs for nbgrader are in <code class="docutils literal"><span class="pre">/var/log/nbgrader</span></code>.</p>
+</div>
+<div class="section" id="starting-stopping-and-restarting-the-hub">
+<span id="starting-stopping-and-restarting-the-hub"></span><h3>Starting, stopping, and restarting the Hub<a class="headerlink" href="#starting-stopping-and-restarting-the-hub" title="Permalink to this headline">¶</a></h3>
+<p>To manage the jupyterhub and nbgrader services by SSH to the server
+and run: <code class="docutils literal"><span class="pre">supervisorctl</span> <span class="pre">jupyterhub</span> <span class="pre">[start|stop|restart]</span></code></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Project Jupyter team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
