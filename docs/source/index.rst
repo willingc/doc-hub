@@ -53,6 +53,8 @@ Contents:
    :caption: Configuration
 
    authenticators
+   authenticators/ldapauthenticator/README.md
+   authenticators/oauthenticator/README.md
    spawners
    troubleshooting
 
